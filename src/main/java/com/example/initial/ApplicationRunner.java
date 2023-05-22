@@ -1,6 +1,7 @@
 package com.example.initial;
 
 import com.example.initial.entity.Comment;
+import com.example.initial.entity.Post;
 import com.example.initial.service.CommentService;
 import com.example.initial.service.PostService;
 import lombok.RequiredArgsConstructor;
@@ -18,13 +19,14 @@ public class ApplicationRunner implements CommandLineRunner {
     public static void main(String[] args) {
         SpringApplication.run(ApplicationRunner.class, args);
     }
-
     @Override
     public void run(String... args) {
         commentService.save(Comment.builder().body("Az sym kote").author("Lolio").build());
         commentService.save(Comment.builder().body("Az sym malka mishka").author("Aleks").build());
         commentService.save(Comment.builder().body("Az sym tup").author("Toni sosa").build());
 
-//        postService.
+
+        postService.save(Post.builder().body("Photo with dog").author("Eva").likes(8L).build());
+        postService.save(Post.builder().body("Selfie photo").author("Toni").likes(10L).build());
     }
 }
