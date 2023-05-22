@@ -1,6 +1,6 @@
-package com.example.evafirstproject.repository;
+package com.example.initial.repository;
 
-import com.example.evafirstproject.entity.Comment;
+import com.example.initial.entity.Comment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

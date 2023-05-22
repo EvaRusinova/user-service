@@ -1,6 +1,6 @@
-package com.example.evafirstproject.repository;
+package com.example.initial.repository;
 
-import com.example.evafirstproject.entity.Post;
+import com.example.initial.entity.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

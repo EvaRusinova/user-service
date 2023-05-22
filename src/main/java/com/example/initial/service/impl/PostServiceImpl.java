@@ -1,6 +1,6 @@
-package com.example.evafirstproject.service.impl;
+package com.example.initial.service.impl;
 
-import com.example.evafirstproject.service.PostService;
+import com.example.initial.service.PostService;
 import org.springframework.stereotype.Service;
 
 @Service

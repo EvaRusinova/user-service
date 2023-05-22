@@ -1,6 +1,8 @@
-package com.example.evafirstproject.service;
+package com.example.initial.service;
 
-import com.example.evafirstproject.entity.Comment;
+import com.example.initial.entity.Comment;
+
+import java.util.List;
 
 public interface CommentService {
 
@@ -9,4 +11,6 @@ public interface CommentService {
     Comment save(Comment comment);
 
     Comment findByAuthor(String author);
+
+    List<Comment> findAllComments();
 }

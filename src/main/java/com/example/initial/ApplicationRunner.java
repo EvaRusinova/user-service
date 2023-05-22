@@ -1,7 +1,7 @@
-package com.example.evafirstproject;
+package com.example.initial;
 
-import com.example.evafirstproject.entity.Comment;
-import com.example.evafirstproject.service.CommentService;
+import com.example.initial.entity.Comment;
+import com.example.initial.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

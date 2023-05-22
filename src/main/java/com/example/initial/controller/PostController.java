@@ -1,4 +1,4 @@
-package com.example.evafirstproject.controller;
+package com.example.initial.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
