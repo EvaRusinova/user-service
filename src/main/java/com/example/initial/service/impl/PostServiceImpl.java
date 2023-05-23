@@ -27,7 +27,7 @@ public class PostServiceImpl implements PostService {
     }
 
     public Long getLikesForPost(Long postId) {
-        return postRepository.countByLikes(postId);
+        return postRepository.getLikesForPostId(postId);
     }
 
 }

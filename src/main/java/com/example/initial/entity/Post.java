@@ -30,7 +30,7 @@ public class Post {
     private String body;
 
     @Column(name = "likes")
-    private Long likes;
+    private Long postId;
 
     @CreationTimestamp
     @Column(name = "created_at")

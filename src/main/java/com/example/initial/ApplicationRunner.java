@@ -26,7 +26,7 @@ public class ApplicationRunner implements CommandLineRunner {
         commentService.save(Comment.builder().body("Az sym tup").author("Toni sosa").build());
 
 
-        postService.save(Post.builder().body("Photo with dog").author("Eva").likes(8L).build());
-        postService.save(Post.builder().body("Selfie photo").author("Toni").likes(10L).build());
+        postService.save(Post.builder().body("Photo with dog").author("Eva").postId(8L).build());
+        postService.save(Post.builder().body("Selfie photo").author("Toni").postId(10L).build());
     }
 }

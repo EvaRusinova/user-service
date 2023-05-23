@@ -20,7 +20,7 @@ public class PostController {
         return postService.findByAuthor(author);
     }
     @GetMapping("/getLikes")
-    public Long countByPostId(@RequestParam(name = "postId") Long postId) {
+    public Long getLikesForPost(@RequestParam(name = "postId") Long postId) {
         return postService.getLikesForPost(postId);
     }
 
