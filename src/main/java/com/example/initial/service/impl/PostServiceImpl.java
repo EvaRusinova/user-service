@@ -6,14 +6,13 @@ import com.example.initial.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 
 @RequiredArgsConstructor
 public class PostServiceImpl implements PostService {
 
     private final PostRepository postRepository;
+
 
     public Post findById(Long id) {
         return postRepository.findById(id).orElseThrow();
@@ -27,8 +26,8 @@ public class PostServiceImpl implements PostService {
         return postRepository.findByAuthor(author);
     }
 
-    public List<Post> findAllLikes() {
-        return postRepository.findAll();
+    public Long getLikesForPost(Long postId) {
+        return postRepository.countByLikes(postId);
     }
 
 }

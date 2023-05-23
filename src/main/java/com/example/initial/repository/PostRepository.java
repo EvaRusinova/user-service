@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 public interface PostRepository extends JpaRepository<Post, Long> {
     Post findByAuthor(String author);
 
+    Long countByLikes(Long likes);
+
 }

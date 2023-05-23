@@ -5,8 +5,6 @@ import com.example.initial.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/post")
 @RequiredArgsConstructor
@@ -22,8 +20,8 @@ public class PostController {
         return postService.findByAuthor(author);
     }
     @GetMapping("/getLikes")
-    public List<Post> getLikes() {
-        return postService.findAllLikes();
+    public Long countByPostId(@RequestParam(name = "postId") Long postId) {
+        return postService.getLikesForPost(postId);
     }
 
 }
