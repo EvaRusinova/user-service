@@ -2,10 +2,9 @@ package com.example.initial.controller;
 
 import com.example.initial.entity.Comment;
 import com.example.initial.service.CommentService;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/comment")
@@ -28,5 +27,4 @@ public class CommentController {
     public List<Comment> getAllComments() {
         return commentService.findAllComments();
     }
-
 }

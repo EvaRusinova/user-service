@@ -1,21 +1,11 @@
 package com.example.initial.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.data.annotation.CreatedDate;
-
+import jakarta.persistence.*;
+import java.sql.Timestamp;
 import java.util.Date;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
 @Table(name = "post")
@@ -33,7 +23,7 @@ public class Post {
     private Long id;
 
     @Column(name = "author")
-    private String name;
+    private String author;
 
     @Column(name = "body")
     private String body;
@@ -41,9 +31,9 @@ public class Post {
     @Column(name = "likes")
     private Long likes;
 
-    @CreatedDate
-    @Column(name = "crated_at")
-    private Date createdAt;
+    @CreationTimestamp
+    @Column(name = "created_at")
+    private Timestamp createdAt;
 
     @UpdateTimestamp
     @Column(name = "updated_at")
