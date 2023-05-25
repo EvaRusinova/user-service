@@ -1,21 +1,13 @@
 package com.example.initial.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.data.annotation.CreatedDate;
-
+import jakarta.persistence.*;
+import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
 @Table(name = "post")
@@ -27,25 +19,32 @@ import java.util.Date;
 @AllArgsConstructor
 public class Post {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "id", nullable = false)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.SEQUENCE)
+  @Column(name = "id", nullable = false)
+  private Long id;
 
-    @Column(name = "author")
-    private String name;
+  @Column(name = "author")
+  private String author;
 
-    @Column(name = "body")
-    private String body;
+  @Column(name = "body")
+  private String body;
 
-    @Column(name = "likes")
-    private Long likes;
+  @Column(name = "likes")
+  private Long likes;
 
-    @CreatedDate
-    @Column(name = "crated_at")
-    private Date createdAt;
+  @CreationTimestamp
+  @Column(name = "created_at")
+  private Timestamp createdAt;
 
-    @UpdateTimestamp
-    @Column(name = "updated_at")
-    private Date updatedAt;
+  @UpdateTimestamp
+  @Column(name = "updated_at")
+  private Date updatedAt;
+
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "user_id")
+  private User user;
+
+  @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+  private List<Comment> comments = new ArrayList<>();
 }
