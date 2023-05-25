@@ -11,20 +11,20 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class CommentController {
 
-    private final CommentService commentService;
+  private final CommentService commentService;
 
-    @GetMapping("/{id}")
-    public Comment findById(@PathVariable(name = "id") Long id) {
-        return commentService.findById(id);
-    }
+  @GetMapping("/{id}")
+  public Comment findById(@PathVariable(name = "id") Long id) {
+    return commentService.findById(id);
+  }
 
-    @GetMapping("/findByAuthor")
-    public Comment findByAuthor(@RequestParam(name = "author") String author) {
-        return commentService.findByAuthor(author);
-    }
+  @GetMapping("/findByAuthor")
+  public Comment findByAuthor(@RequestParam(name = "author") String author) {
+    return commentService.findByAuthor(author);
+  }
 
-    @GetMapping("/getAll")
-    public List<Comment> getAllComments() {
-        return commentService.findAllComments();
-    }
+  @GetMapping("/getAll")
+  public List<Comment> getAllComments() {
+    return commentService.findAllComments();
+  }
 }

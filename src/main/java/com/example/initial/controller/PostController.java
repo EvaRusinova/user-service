@@ -10,20 +10,20 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class PostController {
 
-    private final PostService postService;
+  private final PostService postService;
 
-    @GetMapping("/{id}")
-    public Post findById(@PathVariable(name = "id") Long id) {
-        return postService.findById(id);
-    }
+  @GetMapping("/{id}")
+  public Post findById(@PathVariable(name = "id") Long id) {
+    return postService.findById(id);
+  }
 
-    @GetMapping("/findByAuthor")
-    public Post findByAuthor(@RequestParam(name = "author") String author) {
-        return postService.findByAuthor(author);
-    }
+  @GetMapping("/findByAuthor")
+  public Post findByAuthor(@RequestParam(name = "author") String author) {
+    return postService.findByAuthor(author);
+  }
 
-    @GetMapping("/getLikes")
-    public Post getLikesForPost(@RequestParam(name = "postId") Long id) {
-        return postService.findById(id);
-    }
+  @GetMapping("/getLikes")
+  public Long getLikesForPost(@RequestParam(name = "postId") Long id) {
+    return postService.getLikesForPost(id);
+  }
 }

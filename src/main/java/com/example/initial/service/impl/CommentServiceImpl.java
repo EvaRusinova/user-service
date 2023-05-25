@@ -11,21 +11,21 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class CommentServiceImpl implements CommentService {
 
-    private final CommentRepository commentRepository;
+  private final CommentRepository commentRepository;
 
-    public Comment findById(Long id) {
-        return commentRepository.findById(id).orElseThrow();
-    }
+  public Comment findById(Long id) {
+    return commentRepository.findById(id).orElseThrow();
+  }
 
-    public Comment save(Comment comment) {
-        return commentRepository.save(comment);
-    }
+  public Comment save(Comment comment) {
+    return commentRepository.save(comment);
+  }
 
-    public Comment findByAuthor(String author) {
-        return commentRepository.findByAuthor(author);
-    }
+  public Comment findByAuthor(String author) {
+    return commentRepository.findByAuthor(author);
+  }
 
-    public List<Comment> findAllComments() {
-        return commentRepository.findAll();
-    }
+  public List<Comment> findAllComments() {
+    return commentRepository.findAll();
+  }
 }

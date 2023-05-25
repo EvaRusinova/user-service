@@ -5,11 +5,11 @@ import java.util.List;
 
 public interface CommentService {
 
-    Comment findById(Long id);
+  Comment findById(Long id);
 
-    Comment save(Comment comment);
+  Comment save(Comment comment);
 
-    Comment findByAuthor(String author);
+  Comment findByAuthor(String author);
 
-    List<Comment> findAllComments();
+  List<Comment> findAllComments();
 }
