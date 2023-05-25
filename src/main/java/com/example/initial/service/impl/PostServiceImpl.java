@@ -5,8 +5,10 @@ import com.example.initial.repository.PostRepository;
 import com.example.initial.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 @Service
+@Validated
 @RequiredArgsConstructor
 public class PostServiceImpl implements PostService {
 
@@ -20,7 +22,6 @@ public class PostServiceImpl implements PostService {
     return postRepository.save(post);
   }
 
-  @Override
   public Long getLikesForPost(Long id) {
     return findById(id).getLikes();
   }

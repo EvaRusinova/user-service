@@ -1,6 +1,7 @@
 package com.example.initial.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import java.util.List;
 import lombok.*;
 
@@ -18,9 +19,11 @@ public class User {
   @Column(name = "id", nullable = false)
   private Long id;
 
-  @Column(name = "name")
+  @NotBlank(message = "User name can not be null")
+  @Column(name = "name", unique = true)
   private String name;
 
   @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+  @ToString.Exclude
   private List<Post> posts;
 }

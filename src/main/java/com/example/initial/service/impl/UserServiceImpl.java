@@ -6,13 +6,14 @@ import com.example.initial.service.UserService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 @Service
+@Validated
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
   private final UserRepository userRepository;
 
-  // TODO: return only User object
   public User findById(Long id) {
     return userRepository.findById(id).orElseThrow();
   }
@@ -21,7 +22,15 @@ public class UserServiceImpl implements UserService {
     return userRepository.save(user);
   }
 
+  public List<User> saveAll(List<User> users) {
+    return userRepository.saveAll(users);
+  }
+
   public List<User> getAllUsers() {
     return userRepository.findAll();
+  }
+
+  public void deleteById(Long id) {
+    userRepository.deleteById(id);
   }
 }

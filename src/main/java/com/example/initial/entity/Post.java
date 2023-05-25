@@ -1,8 +1,8 @@
 package com.example.initial.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import lombok.*;
@@ -27,6 +27,11 @@ public class Post {
   @Column(name = "author")
   private String author;
 
+  @NotBlank(message = "Post title can't be empty")
+  @Column(name = "title")
+  private String title;
+
+  @NotBlank(message = "Post body can't be empty")
   @Column(name = "body")
   private String body;
 
@@ -43,8 +48,10 @@ public class Post {
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "user_id")
+  @ToString.Exclude
   private User user;
 
   @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
-  private List<Comment> comments = new ArrayList<>();
+  @ToString.Exclude
+  private List<Comment> comments;
 }

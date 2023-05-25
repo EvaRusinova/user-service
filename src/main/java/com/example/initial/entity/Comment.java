@@ -1,14 +1,10 @@
 package com.example.initial.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import java.sql.Timestamp;
 import java.util.Date;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -30,6 +26,7 @@ public class Comment {
   @Column(name = "author")
   private String author;
 
+  @NotBlank(message = "Comment body can not be empty")
   @Column(name = "body")
   private String body;
 
@@ -42,10 +39,7 @@ public class Comment {
   private Date updatedAt;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "user_id")
-  private User user;
-
-  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "post_id")
+  @ToString.Exclude
   private Post post;
 }
