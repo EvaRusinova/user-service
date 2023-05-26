@@ -23,6 +23,8 @@ public class CommentController {
     return commentService.findByAuthor(author);
   }
 
+  // TODO: add method saveComment
+
   @GetMapping("/getAll")
   public List<Comment> getAllComments() {
     return commentService.findAllComments();

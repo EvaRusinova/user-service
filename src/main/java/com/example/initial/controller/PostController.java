@@ -22,6 +22,8 @@ public class PostController {
     return postService.findByAuthor(author);
   }
 
+  // TODO: add method savePost
+
   @GetMapping("/getLikes")
   public Long getLikesForPost(@RequestParam(name = "postId") Long id) {
     return postService.getLikesForPost(id);
