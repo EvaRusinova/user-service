@@ -19,15 +19,15 @@ public class CommentServiceImpl implements CommentService {
     return commentRepository.findById(id).orElseThrow();
   }
 
-  public Comment save(Comment comment) {
-    return commentRepository.save(comment);
-  }
-
   public Comment findByAuthor(String author) {
     return commentRepository.findByAuthor(author);
   }
 
   public List<Comment> findAllComments() {
     return commentRepository.findAll();
+  }
+
+  public Comment saveComment(Comment comment) {
+    return commentRepository.save(comment);
   }
 }

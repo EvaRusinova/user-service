@@ -18,12 +18,13 @@ public class PostServiceImpl implements PostService {
     return postRepository.findById(id).orElseThrow();
   }
 
-  public Post save(Post post) {
-    return postRepository.save(post);
-  }
-
   public Long getLikesForPost(Long id) {
     return findById(id).getLikes();
+  }
+
+  @Override
+  public Post savePost(Post post) {
+    return postRepository.save(post);
   }
 
   public Post findByAuthor(String author) {

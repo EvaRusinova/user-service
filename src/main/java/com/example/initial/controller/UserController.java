@@ -4,10 +4,7 @@ import com.example.initial.entity.User;
 import com.example.initial.service.UserService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
@@ -16,6 +13,10 @@ public class UserController {
   private final UserService userService;
 
   // TODO: add method "saveUser(User user)"
+  @GetMapping("/save")
+  public User saveUser(@RequestBody User user) {
+    return userService.saveUser(user);
+  }
 
   @GetMapping("/{id}")
   public User findById(@PathVariable(name = "id") Long id) {

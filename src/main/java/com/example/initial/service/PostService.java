@@ -7,7 +7,7 @@ public interface PostService {
 
   Post findByAuthor(String author);
 
-  Post save(Post post);
-
   Long getLikesForPost(Long id);
+
+  Post savePost(Post post);
 }
