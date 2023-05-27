@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
   private final UserService userService;
 
-  // TODO: add method "saveUser(User user)"
-  @GetMapping("/save")
+  @PostMapping("/save")
   public User saveUser(@RequestBody User user) {
     return userService.saveUser(user);
   }

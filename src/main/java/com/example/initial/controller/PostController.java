@@ -22,7 +22,7 @@ public class PostController {
     return postService.findByAuthor(author);
   }
 
-  @GetMapping("/save")
+  @PostMapping("/save")
   public Post savePost(@RequestBody Post post) {
     return postService.savePost(post);
   }

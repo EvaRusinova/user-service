@@ -23,7 +23,7 @@ public class CommentController {
     return commentService.findByAuthor(author);
   }
 
-  @GetMapping("/save")
+  @PostMapping("/save")
   public Comment saveComment(@RequestBody Comment comment) {
     return commentService.saveComment(comment);
   }
