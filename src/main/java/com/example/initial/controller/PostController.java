@@ -22,7 +22,10 @@ public class PostController {
     return postService.findByAuthor(author);
   }
 
-  // TODO: add method savePost
+  @PostMapping("/save")
+  public Post savePost(@RequestBody Post post) {
+    return postService.savePost(post);
+  }
 
   @GetMapping("/getLikes")
   public Long getLikesForPost(@RequestParam(name = "postId") Long id) {

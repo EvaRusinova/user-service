@@ -7,9 +7,9 @@ public interface CommentService {
 
   Comment findById(Long id);
 
-  Comment save(Comment comment);
-
   Comment findByAuthor(String author);
 
   List<Comment> findAllComments();
+
+  Comment saveComment(Comment comment);
 }

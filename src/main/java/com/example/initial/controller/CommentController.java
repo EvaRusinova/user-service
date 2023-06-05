@@ -23,7 +23,10 @@ public class CommentController {
     return commentService.findByAuthor(author);
   }
 
-  // TODO: add method saveComment
+  @PostMapping("/save")
+  public Comment saveComment(@RequestBody Comment comment) {
+    return commentService.saveComment(comment);
+  }
 
   @GetMapping("/getAll")
   public List<Comment> getAllComments() {
