@@ -11,14 +11,14 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 @ControllerAdvice
 public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
-    /// custom exceptions in the future
+
   @ExceptionHandler(value = {IllegalArgumentException.class, IllegalStateException.class})
   protected ResponseEntity<Object> handleConflict(RuntimeException ex, WebRequest request) {
     String bodyOfResponse = "Invalid request.";
     return handleExceptionInternal(
         ex, bodyOfResponse, new HttpHeaders(), HttpStatus.CONFLICT, request);
   }
-    /// testSaveUser_DuplicateName RepositoryTest catch exception
+
   @ExceptionHandler(DataIntegrityViolationException.class)
   protected ResponseEntity<Object> handleDataIntegrityViolation(
       DataIntegrityViolationException ex, WebRequest request) {
