@@ -24,7 +24,6 @@ public class LoginCounterInterceptor implements HandlerInterceptor {
       @Nullable Object handler,
       ModelAndView modelAndView) {
     // Post-processing logic
-    System.out.println("Post handle");
   }
 
   public void afterCompletion(
