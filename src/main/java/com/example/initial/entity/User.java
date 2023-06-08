@@ -25,7 +25,7 @@ public class User {
   @Column(name = "name")
   private String name;
 
-  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
   @ToString.Exclude
   private List<Post> posts;
 

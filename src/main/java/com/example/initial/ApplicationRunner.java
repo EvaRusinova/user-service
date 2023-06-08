@@ -17,8 +17,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ApplicationRunner implements CommandLineRunner {
 
   private final UserService userService;
-  private final CommentService commentService;
-  private final PostService postService;
 
   public static void main(String[] args) {
     SpringApplication.run(ApplicationRunner.class, args);
@@ -66,16 +64,5 @@ public class ApplicationRunner implements CommandLineRunner {
 
     // Save the test users
     userService.saveAll(testUsers);
-
-    //    commentService.save(Comment.builder().body("Az sym kote").author("Lolio").build());
-    //    commentService.save(Comment.builder().body("Az sym malka
-    // mishka").author("Aleks").build());
-    //    commentService.save(Comment.builder().body("Az sym tup").author("Toni sosa").build());
-
-    //    postService.save(Post.builder().body("Photo with
-    // dog").author("Eva").likes(8888L).build());
-    //    postService.save(Post.builder().body("Selfie photo").author("Toni").likes(5555L).build());
-    //
-
   }
 }

@@ -1,4 +1,4 @@
-package com.example.initial.config;
+package com.example.initial.exception;
 
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
