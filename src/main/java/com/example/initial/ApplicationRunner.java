@@ -5,13 +5,12 @@ import com.example.initial.entity.User;
 import com.example.initial.service.CommentService;
 import com.example.initial.service.PostService;
 import com.example.initial.service.UserService;
+import java.util.Arrays;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.util.Arrays;
-import java.util.List;
 
 @RequiredArgsConstructor
 @SpringBootApplication

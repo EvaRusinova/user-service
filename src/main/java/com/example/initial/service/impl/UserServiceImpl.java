@@ -3,11 +3,10 @@ package com.example.initial.service.impl;
 import com.example.initial.entity.User;
 import com.example.initial.repository.UserRepository;
 import com.example.initial.service.UserService;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
-
-import java.util.List;
 
 @Service
 @Validated

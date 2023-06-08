@@ -2,10 +2,9 @@ package com.example.initial.controller;
 
 import com.example.initial.entity.User;
 import com.example.initial.service.UserService;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/user")
