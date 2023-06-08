@@ -2,6 +2,7 @@ package com.example.initial.interceptor;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.Objects;
 import org.springframework.lang.Nullable;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -14,7 +15,9 @@ public class LoginCounterInterceptor implements HandlerInterceptor {
       @Nullable HttpServletResponse response,
       @Nullable Object handler) {
     // Pre-processing logic
-    loginCount++;
+    if (!Objects.requireNonNull(request).getRequestURI().contains("/count")) {
+      loginCount++;
+    }
     return true;
   }
 

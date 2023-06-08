@@ -1,5 +1,6 @@
 package com.example.initial.controller;
 
+import com.example.initial.dto.UserLoginDto;
 import com.example.initial.entity.User;
 import com.example.initial.interceptor.LoginCounterInterceptor;
 import com.example.initial.service.UserService;
@@ -37,16 +38,19 @@ public class UserController {
   }
 
   @PostMapping("/login")
-  public ResponseEntity<String> login(@RequestBody User user) {
-    User existingUser = userService.findByUserName(user.getUserName());
+  public ResponseEntity<String> login(@RequestBody UserLoginDto userLoginDto) {
+    User existingUser = userService.findByUserName(userLoginDto.getUserName());
 
-    if (existingUser == null || !existingUser.getPassword().equals(user.getPassword())) {
+    if (existingUser == null || !existingUser.getPassword().equals(userLoginDto.getPassword())) {
       // Invalid username/password
       return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
     }
 
     // Successful login
-    return ResponseEntity.ok("Login successful");
+    return ResponseEntity.ok(
+        "Login successful, logged in "
+            + loginCounterInterceptor.getLoginCount()
+            + " times in total");
   }
 
   @GetMapping("/login/count")
