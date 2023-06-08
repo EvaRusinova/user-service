@@ -8,18 +8,24 @@ import org.springframework.web.servlet.ModelAndView;
 public class LoginCounterInterceptor implements HandlerInterceptor {
   private static int loginCount;
 
-  public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
+  public boolean preHandle(
+      HttpServletRequest request, HttpServletResponse response, Object handler) {
     // Pre-processing logic
     loginCount++;
     return true;
   }
 
-  public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) {
+  public void postHandle(
+      HttpServletRequest request,
+      HttpServletResponse response,
+      Object handler,
+      ModelAndView modelAndView) {
     // Post-processing logic
     System.out.println("Post handle");
   }
 
-  public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
+  public void afterCompletion(
+      HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
     // Cleanup logic
     System.out.println("After completion");
   }
