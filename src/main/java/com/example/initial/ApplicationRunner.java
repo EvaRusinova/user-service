@@ -28,13 +28,19 @@ public class ApplicationRunner implements CommandLineRunner {
   public void run(String... args) {
     List<User> testUsers =
         Arrays.asList(
-            User.builder().name("John Doe").userName("john_doe").password("john_doe").build(),
+            User.builder()
+                .name("John Doe")
+                .userName("john_doe")
+                .password("john_doe")
+                .creditCard("4242424242424242")
+                .age(25)
+                .build(),
             User.builder()
                 .name("Jane Smith")
                 .userName("jane_user")
                 .password("JANESMITH93")
-                    .creditCard("4242424242424242")
-                    .age(25)
+                .creditCard("4242424242424242")
+                .age(25)
                 .build());
 
     testUsers.forEach(

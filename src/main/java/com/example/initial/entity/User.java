@@ -64,6 +64,11 @@ public class User {
   @Column(name = "credit_card")
   private String creditCard;
 
-  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+  @OneToMany(
+      mappedBy = "user",
+      cascade = CascadeType.ALL,
+      orphanRemoval = true,
+      fetch = FetchType.EAGER)
+  @JsonIgnoreProperties("user")
   private List<Photo> photos;
 }
