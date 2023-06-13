@@ -1,5 +1,6 @@
 package com.example.initial.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -31,6 +32,7 @@ public class User {
       orphanRemoval = true,
       fetch = FetchType.EAGER)
   @ToString.Exclude
+  @JsonIgnoreProperties("user")
   private List<Post> posts;
 
   @Size(min = 5, max = 20, message = "User name must be between 5 and 20 characters")

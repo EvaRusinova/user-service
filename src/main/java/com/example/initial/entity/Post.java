@@ -1,9 +1,9 @@
 package com.example.initial.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import java.sql.Timestamp;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -40,18 +40,19 @@ public class Post {
 
   @CreationTimestamp
   @Column(name = "created_at")
-  private Timestamp createdAt;
+  private LocalDateTime createdAt;
 
   @UpdateTimestamp
   @Column(name = "updated_at")
-  private Date updatedAt;
+  private LocalDateTime updatedAt;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "user_id")
   @ToString.Exclude
   private User user;
 
-  @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+  @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
   @ToString.Exclude
+  @JsonIgnoreProperties("post")
   private List<Comment> comments;
 }

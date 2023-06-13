@@ -14,10 +14,16 @@ spring:
     url: jdbc:h2:mem:testdb;DB_CLOSE_ON_EXIT=FALSE;IGNORECASE=TRUE
     initialize: false
 
-
 # Actuator
 management:
   endpoints:
     web:
       exposure:
         include: 'info,health'
+
+# Logging
+logging:
+  level:
+    root: ERROR
+    org.springframework.web: DEBUG
+    your.package.name: DEBUG
