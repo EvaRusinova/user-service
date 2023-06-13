@@ -51,8 +51,21 @@ public class Post {
   @ToString.Exclude
   private User user;
 
-  @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+  @OneToMany(
+      mappedBy = "post",
+      cascade = CascadeType.ALL,
+      orphanRemoval = true,
+      fetch = FetchType.EAGER)
   @ToString.Exclude
   @JsonIgnoreProperties("post")
   private List<Comment> comments;
+
+  @OneToMany(
+      mappedBy = "post",
+      cascade = CascadeType.ALL,
+      orphanRemoval = true,
+      fetch = FetchType.EAGER)
+  @ToString.Exclude
+  @JsonIgnoreProperties("post")
+  private List<Photo> photos;
 }

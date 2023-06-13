@@ -24,6 +24,6 @@ management:
 # Logging
 logging:
   level:
-    root: ERROR
+    root: INFO
     org.springframework.web: DEBUG
     your.package.name: DEBUG
