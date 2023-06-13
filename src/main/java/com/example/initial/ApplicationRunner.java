@@ -33,6 +33,8 @@ public class ApplicationRunner implements CommandLineRunner {
                 .name("Jane Smith")
                 .userName("jane_user")
                 .password("JANESMITH93")
+                    .creditCard("4242424242424242")
+                    .age(25)
                 .build());
 
     testUsers.forEach(
