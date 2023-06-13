@@ -22,7 +22,7 @@ public class LoginCounterInterceptor implements HandlerInterceptor {
   }
 
   public void postHandle(
-      @Nullable HttpServletRequest request,
+      HttpServletRequest request,
       @Nullable HttpServletResponse response,
       @Nullable Object handler,
       ModelAndView modelAndView) {

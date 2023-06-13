@@ -28,7 +28,7 @@ public class ApplicationRunner implements CommandLineRunner {
             User.builder()
                 .name("John Doe")
                 .userName("john_doe")
-                .password("34johndoe")
+                .password("john_doe")
                 .posts(
                     Arrays.asList(
                         Post.builder()
