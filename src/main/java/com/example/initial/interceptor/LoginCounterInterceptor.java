@@ -15,18 +15,18 @@ public class LoginCounterInterceptor implements HandlerInterceptor {
       @Nullable HttpServletResponse response,
       @Nullable Object handler) {
     // Pre-processing logic
-    if (!Objects.requireNonNull(request).getRequestURI().contains("/count")) {
-      loginCount++;
-    }
     return true;
   }
 
   public void postHandle(
-      HttpServletRequest request,
+      @Nullable HttpServletRequest request,
       @Nullable HttpServletResponse response,
       @Nullable Object handler,
       ModelAndView modelAndView) {
     // Post-processing logic
+    if (!Objects.requireNonNull(request).getRequestURI().contains("/count")) {
+      loginCount++;
+    }
   }
 
   public void afterCompletion(
