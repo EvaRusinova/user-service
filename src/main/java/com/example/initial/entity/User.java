@@ -18,11 +18,7 @@ import org.hibernate.validator.constraints.CreditCardNumber;
 @AllArgsConstructor
 @Entity
 @Table(name = "users")
-public class User {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "id", nullable = false)
-  private Long id;
+public class User extends BaseEntity {
 
   @Size(min = 2, max = 50, message = "Name must be between 2 and 50 characters")
   @NotBlank(message = "Name of the user can not be null")

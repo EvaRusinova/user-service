@@ -13,12 +13,7 @@ import lombok.*;
 @AllArgsConstructor
 @Entity
 @Table(name = "photo")
-public class Photo {
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "id", nullable = false)
-  private Long id;
+public class Photo extends BaseEntity {
 
   @NotBlank(message = "Photo URL can not be null")
   @Column(name = "url")
