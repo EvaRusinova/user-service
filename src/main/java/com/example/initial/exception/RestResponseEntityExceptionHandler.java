@@ -1,6 +1,5 @@
 package com.example.initial.exception;
 
-import java.io.IOException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
