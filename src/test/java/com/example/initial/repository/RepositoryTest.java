@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.transaction.TransactionSystemException;
 
 @SpringBootTest
 public class RepositoryTest {
@@ -34,7 +33,14 @@ public class RepositoryTest {
   @Test
   public void testSaveUser() {
     // Create a user
-    User user = User.builder().name("John Doe").build();
+    var user =
+        User.builder()
+            .name("John Doe")
+            .userName("john_doe")
+            .password("john_doe")
+            .creditCard("4242424242424242")
+            .age(25)
+            .build();
 
     // Save the user
     User savedUser = userRepository.save(user);
@@ -47,7 +53,14 @@ public class RepositoryTest {
   @Test
   public void testFindByAuthor() {
     // Create a user
-    User user = User.builder().name("John Doe").build();
+    var user =
+        User.builder()
+            .name("John Doe")
+            .userName("john_doe")
+            .password("john_doe")
+            .creditCard("4242424242424242")
+            .age(25)
+            .build();
     userRepository.save(user);
 
     // Create a post with the author set to the user's name
@@ -74,7 +87,14 @@ public class RepositoryTest {
   @Test
   public void testFindByAuthorComment() {
     // Create a user
-    User user = User.builder().name("John Doe").build();
+    var user =
+        User.builder()
+            .name("John Doe")
+            .userName("john_doe")
+            .password("john_doe")
+            .creditCard("4242424242424242")
+            .age(25)
+            .build();
     userRepository.save(user);
 
     // Create a post
@@ -105,8 +125,22 @@ public class RepositoryTest {
   @Test
   public void testFindAllUsers() {
     // Create multiple users
-    User user1 = User.builder().name("John Doe").build();
-    User user2 = User.builder().name("Jane Smith").build();
+    var user1 =
+        User.builder()
+            .name("John Doe")
+            .userName("john_doe1")
+            .password("john_doe")
+            .creditCard("4242424242424242")
+            .age(25)
+            .build();
+    var user2 =
+        User.builder()
+            .name("John Doe")
+            .userName("john_doe2")
+            .password("john_doe")
+            .creditCard("4242424242424242")
+            .age(25)
+            .build();
     userRepository.saveAll(Arrays.asList(user1, user2));
 
     // Find all users
@@ -119,7 +153,14 @@ public class RepositoryTest {
   @Test
   public void testFindAllPostsByUserId() {
     // Create a user
-    User user = User.builder().name("John Doe").build();
+    var user =
+        User.builder()
+            .name("John Doe")
+            .userName("john_doe")
+            .password("john_doe")
+            .creditCard("4242424242424242")
+            .age(25)
+            .build();
     userRepository.save(user);
 
     // Create multiple posts by the user
@@ -174,7 +215,14 @@ public class RepositoryTest {
   @Test
   public void testDeleteUser() {
     // Create a user
-    User user = User.builder().name("John Doe").build();
+    var user =
+        User.builder()
+            .name("John Doe")
+            .userName("john_doe")
+            .password("john_doe")
+            .creditCard("4242424242424242")
+            .age(25)
+            .build();
     userRepository.save(user);
 
     // Delete the user
@@ -218,8 +266,22 @@ public class RepositoryTest {
   @Test
   public void testCountUsers() {
     // Create multiple users
-    User user1 = User.builder().name("John Doe").build();
-    User user2 = User.builder().name("Jane Smith").build();
+    var user1 =
+        User.builder()
+            .name("John Doe")
+            .userName("john_doe1")
+            .password("john_doe")
+            .creditCard("4242424242424242")
+            .age(25)
+            .build();
+    var user2 =
+        User.builder()
+            .name("John Doe")
+            .userName("john_doe2")
+            .password("john_doe")
+            .creditCard("4242424242424242")
+            .age(25)
+            .build();
     userRepository.saveAll(Arrays.asList(user1, user2));
 
     // Count the number of users
@@ -232,7 +294,14 @@ public class RepositoryTest {
   @Test
   public void testCountPostsByUser() {
     // Create a user
-    User user = User.builder().name("John Doe").build();
+    var user =
+        User.builder()
+            .name("John Doe")
+            .userName("john_doe")
+            .password("john_doe")
+            .creditCard("4242424242424242")
+            .age(25)
+            .build();
     userRepository.save(user);
 
     // Create multiple posts by the user
@@ -262,7 +331,14 @@ public class RepositoryTest {
   @Test
   public void testFindUserById() {
     // Create a user
-    User user = User.builder().name("John Doe").build();
+    var user =
+        User.builder()
+            .name("John Doe")
+            .userName("john_doe")
+            .password("john_doe")
+            .creditCard("4242424242424242")
+            .age(25)
+            .build();
     userRepository.save(user);
 
     // Find the user by ID
@@ -380,10 +456,24 @@ public class RepositoryTest {
   @Test
   public void testSaveUser_DuplicateName() {
     // Create a user with a duplicate name
-    User user1 = User.builder().name("John Doe").build();
+    var user1 =
+        User.builder()
+            .name("John Doe")
+            .userName("john_doe")
+            .password("john_doe")
+            .creditCard("4242424242424242")
+            .age(25)
+            .build();
     userRepository.save(user1);
 
-    User user2 = User.builder().name("John Doe").build();
+    var user2 =
+        User.builder()
+            .name("John Doe")
+            .userName("john_doe")
+            .password("john_doe")
+            .creditCard("4242424242424242")
+            .age(25)
+            .build();
 
     // Attempt to save the user with the same name
     assertThrows(DataIntegrityViolationException.class, () -> userRepository.save(user2));
@@ -395,7 +485,7 @@ public class RepositoryTest {
     Post post = Post.builder().author("John Doe").title("").body("This is my first post").build();
 
     // Attempt to save the post
-    assertThrows(TransactionSystemException.class, () -> postRepository.save(post));
+    assertThrows(ConstraintViolationException.class, () -> postRepository.save(post));
   }
 
   @Test
@@ -404,7 +494,7 @@ public class RepositoryTest {
     Comment comment = Comment.builder().author("Jane Smith").body("").build();
 
     // Attempt to save the comment
-    assertThrows(TransactionSystemException.class, () -> commentRepository.save(comment));
+    assertThrows(ConstraintViolationException.class, () -> commentRepository.save(comment));
   }
 
   // ...
@@ -424,7 +514,7 @@ public class RepositoryTest {
     Post post = Post.builder().author("John Doe").title(null).body("This is my first post").build();
 
     // Attempt to save the post
-    assertThrows(TransactionSystemException.class, () -> postRepository.save(post));
+    assertThrows(ConstraintViolationException.class, () -> postRepository.save(post));
   }
 
   @Test
@@ -433,7 +523,7 @@ public class RepositoryTest {
     Comment comment = Comment.builder().author("Jane Smith").body(null).build();
 
     // Attempt to save the comment
-    assertThrows(TransactionSystemException.class, () -> commentRepository.save(comment));
+    assertThrows(ConstraintViolationException.class, () -> commentRepository.save(comment));
   }
 
   @Test
