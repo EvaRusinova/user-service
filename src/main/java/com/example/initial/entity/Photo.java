@@ -15,9 +15,9 @@ import lombok.*;
 @Table(name = "photo")
 public class Photo extends BaseEntity {
 
-  @NotBlank(message = "Photo URL can not be null")
-  @Column(name = "url")
-  private String url;
+  @NotBlank(message = "Photo data can not be null")
+  @Column(name = "data")
+  private String data;
 
   @Enumerated(EnumType.STRING)
   @Column(name = "format")
