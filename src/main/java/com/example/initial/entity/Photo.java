@@ -1,8 +1,10 @@
 package com.example.initial.entity;
 
 import com.example.initial.enums.PhotoFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 @Getter
@@ -15,9 +17,15 @@ import lombok.*;
 @Table(name = "photo")
 public class Photo extends BaseEntity {
 
-  @NotBlank(message = "Photo data can not be null")
-  @Column(name = "data")
-  private String data;
+  @Lob
+  @JsonIgnore
+  @NotNull(message = "Photo must be provided")
+  @Column(name = "data", columnDefinition = "BLOB")
+  private byte[] data;
+
+  @NotBlank(message = "Photo name can not be null")
+  @Column(name = "name")
+  private String name;
 
   @Enumerated(EnumType.STRING)
   @Column(name = "format")
