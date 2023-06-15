@@ -1,5 +1,6 @@
 package com.example.initial.exception;
 
+import java.io.IOException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -13,17 +14,20 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
   @ExceptionHandler(value = {IllegalArgumentException.class, IllegalStateException.class})
-  protected ResponseEntity<Object> handleConflict(RuntimeException ex, WebRequest request) {
+  protected ResponseEntity<Object> handleIllegalEx(RuntimeException ex, WebRequest request) {
     String bodyOfResponse = "Invalid request.";
     return handleExceptionInternal(
         ex, bodyOfResponse, new HttpHeaders(), HttpStatus.CONFLICT, request);
   }
 
   @ExceptionHandler(DataIntegrityViolationException.class)
-  protected ResponseEntity<Object> handleDataIntegrityViolation(
+  protected ResponseEntity<Object> handleDataIntegrityViolationEx(
       DataIntegrityViolationException ex, WebRequest request) {
     String bodyOfResponse = "Duplicate user name.";
     return handleExceptionInternal(
         ex, bodyOfResponse, new HttpHeaders(), HttpStatus.CONFLICT, request);
   }
+
+  // TODO: add exception handler for wrong format of the file that we try to upload
+
 }

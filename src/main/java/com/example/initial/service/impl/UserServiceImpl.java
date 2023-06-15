@@ -20,6 +20,10 @@ public class UserServiceImpl implements UserService {
     return userRepository.findByUserName(userName);
   }
 
+  public User findById(Long userId) {
+    return userRepository.findById(userId).orElseThrow();
+  }
+
   public List<User> saveAll(List<User> users) {
     return userRepository.saveAll(users);
   }
