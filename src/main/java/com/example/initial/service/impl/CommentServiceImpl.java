@@ -5,9 +5,11 @@ import com.example.initial.repository.CommentRepository;
 import com.example.initial.service.CommentService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
+@Slf4j
 @Service
 @Validated
 @RequiredArgsConstructor
@@ -16,10 +18,12 @@ public class CommentServiceImpl implements CommentService {
   private final CommentRepository commentRepository;
 
   public Comment findById(Long id) {
+
     return commentRepository.findById(id).orElseThrow();
   }
 
   public Comment findByAuthor(String author) {
+
     return commentRepository.findByAuthor(author);
   }
 

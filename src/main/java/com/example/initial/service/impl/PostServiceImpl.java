@@ -22,7 +22,6 @@ public class PostServiceImpl implements PostService {
     return findById(id).getLikes();
   }
 
-  @Override
   public Post savePost(Post post) {
     return postRepository.save(post);
   }

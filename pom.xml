@@ -83,7 +83,18 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
-
+		<!-- SLF4J -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>2.0.5</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.4.7</version>
+			<scope>runtime</scope>
+		</dependency>
 		<!-- To disable yaml transitive dependencies with vulnerabilities -->
 		<dependency>
 			<groupId>org.yaml</groupId>

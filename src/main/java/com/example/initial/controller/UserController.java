@@ -6,11 +6,13 @@ import com.example.initial.interceptor.LoginCounterInterceptor;
 import com.example.initial.service.UserService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @Tag(name = "Users")
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 public class UserController {
@@ -22,11 +24,13 @@ public class UserController {
     User existingUser = userService.findByUserName(userLoginDto.getUserName());
 
     if (existingUser == null || !existingUser.getPassword().equals(userLoginDto.getPassword())) {
+      log.warn("Failed login attempt for username: {}", userLoginDto.getUserName());
       // Invalid username/password
       return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
     }
 
     // Successful login
+    log.info("Successful login for username: {}", userLoginDto.getUserName());
     return ResponseEntity.ok("Login successful");
   }
 
