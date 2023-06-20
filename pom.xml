@@ -91,6 +91,13 @@
 			<version>${snakeyaml.version}</version>
 		</dependency>
 
+       <!-- Cache Caffeine dependency -->
+		<dependency>
+			<groupId>com.github.ben-manes.caffeine</groupId>
+			<artifactId>caffeine</artifactId>
+		</dependency>
+
+
 		<!-- Files -->
 		<dependency>
 			<groupId>commons-io</groupId>
@@ -98,7 +105,7 @@
 			<version>2.13.0</version>
 		</dependency>
 
-	</dependencies>
+    </dependencies>
 
 	<build>
 		<plugins>
