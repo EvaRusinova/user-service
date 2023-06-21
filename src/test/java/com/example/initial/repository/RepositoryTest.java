@@ -1,17 +1,18 @@
 package com.example.initial.repository;
 
 import static org.junit.jupiter.api.Assertions.*;
-import java.util.*;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeEach;
+
+import com.example.initial.entity.Comment;
 import com.example.initial.entity.Post;
 import com.example.initial.entity.User;
+import jakarta.validation.ConstraintViolationException;
+import java.util.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
-import com.example.initial.entity.Comment;
-import jakarta.validation.ConstraintViolationException;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 
 @SpringBootTest
@@ -34,8 +35,6 @@ public class RepositoryTest {
     postByAuthorCache = cacheManager.getCache("postByAuthor");
     allPostsByUserIdCache = cacheManager.getCache("allPostsByUserId");
     allPostsByAuthorCache = cacheManager.getCache("allPostsByAuthor");
-
-
   }
 
   @Test
