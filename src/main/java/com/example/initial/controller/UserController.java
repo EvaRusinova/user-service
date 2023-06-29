@@ -26,7 +26,7 @@ public class UserController {
     if (existingUser == null || !existingUser.getPassword().equals(userLoginDto.getPassword())) {
       log.warn("Failed login attempt for username: {}", userLoginDto.getUserName());
       // Invalid username/password
-      throw new InvalidCredentialsException("Invalid username or password");
+      throw new InvalidCredentialsException("Invalid username or password", "INVALID_CREDENTIALS");
     }
 
     // Successful login

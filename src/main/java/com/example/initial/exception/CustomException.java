@@ -1,9 +1,9 @@
 package com.example.initial.exception;
 
-public class InvalidCredentialsException extends RuntimeException {
+public class CustomException extends RuntimeException {
   private final String errorCode;
 
-  public InvalidCredentialsException(String message, String errorCode) {
+  public CustomException(String message, String errorCode) {
     super(message);
     this.errorCode = errorCode;
   }

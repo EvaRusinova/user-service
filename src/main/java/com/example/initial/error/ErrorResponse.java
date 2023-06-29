@@ -1,15 +1,14 @@
 package com.example.initial.error;
 
-import java.time.LocalDateTime;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
 @RequiredArgsConstructor
 public class ErrorResponse {
   private int status;
   private String message;
-  private LocalDateTime timestamp;
+  private String errorCode;
 }
