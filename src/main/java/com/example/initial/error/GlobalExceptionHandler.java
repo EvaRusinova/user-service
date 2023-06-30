@@ -1,18 +1,17 @@
 package com.example.initial.error;
 
 import com.example.initial.exception.*;
-import lombok.Builder;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-@Builder
 @ControllerAdvice
 public class GlobalExceptionHandler {
-  @ExceptionHandler(CustomException.class)
-  public ResponseEntity<ErrorResponse> handleMyAppException(CustomException ex) {
+
+  @ExceptionHandler(handleCustomException.class)
+  public ResponseEntity<ErrorResponse> handleMyAppException(handleCustomException ex) {
     ErrorResponse errorResponse =
         ErrorResponse.builder()
             .status(HttpStatus.BAD_REQUEST.value())
@@ -27,12 +26,12 @@ public class GlobalExceptionHandler {
   public ResponseEntity<ErrorResponse> handleDatabaseException(DatabaseException ex) {
     ErrorResponse errorResponse =
         ErrorResponse.builder()
-            .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
+            .status(HttpStatus.CONFLICT.value())
             .message(ex.getMessage())
             .errorCode(ex.getErrorCode())
             .build();
 
-    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+    return ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponse);
   }
 
   @ExceptionHandler(AuthorizationException.class)
@@ -60,7 +59,7 @@ public class GlobalExceptionHandler {
   }
 
   @ExceptionHandler(IllegalArgumentException.class)
-  public ResponseEntity<ErrorResponse> handleIllegalEx(CustomException ex) {
+  public ResponseEntity<ErrorResponse> handleIllegalEx(handleCustomException ex) {
     ErrorResponse errorResponse =
         ErrorResponse.builder()
             .status(HttpStatus.SERVICE_UNAVAILABLE.value())
@@ -72,7 +71,7 @@ public class GlobalExceptionHandler {
   }
 
   @ExceptionHandler(DataIntegrityViolationException.class)
-  public ResponseEntity<ErrorResponse> handleDataIntegrityViolationEx(CustomException ex) {
+  public ResponseEntity<ErrorResponse> handleDataIntegrityViolationEx(handleCustomException ex) {
     ErrorResponse errorResponse =
         ErrorResponse.builder()
             .status(HttpStatus.CONFLICT.value())
@@ -96,7 +95,7 @@ public class GlobalExceptionHandler {
   }
 
   @ExceptionHandler(Exception.class)
-  public ResponseEntity<ErrorResponse> handleException(CustomException ex) {
+  public ResponseEntity<ErrorResponse> handleException(handleCustomException ex) {
     ErrorResponse errorResponse =
         ErrorResponse.builder()
             .status(HttpStatus.INTERNAL_SERVER_ERROR.value())

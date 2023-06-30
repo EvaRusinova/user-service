@@ -5,8 +5,6 @@ import lombok.*;
 @Getter
 @Setter
 @Builder
-@AllArgsConstructor
-@RequiredArgsConstructor
 public class ErrorResponse {
   private int status;
   private String message;
