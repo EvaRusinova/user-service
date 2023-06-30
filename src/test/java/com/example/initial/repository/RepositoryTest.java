@@ -14,6 +14,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.cache.Cache;
+import org.springframework.cache.CacheManager;
 import org.springframework.dao.DataIntegrityViolationException;
 
 @SpringBootTest
@@ -22,12 +24,22 @@ public class RepositoryTest {
   @Autowired private UserRepository userRepository;
   @Autowired private PostRepository postRepository;
   @Autowired private CommentRepository commentRepository;
+  @Autowired private CacheManager cacheManager;
+
+  private Cache postByAuthorCache;
+  private Cache allPostsByUserIdCache;
+  private Cache allPostsByAuthorCache;
+
+  private final String userName = "John";
 
   @BeforeEach
   public void setup() {
     userRepository.deleteAll();
     postRepository.deleteAll();
     commentRepository.deleteAll();
+    postByAuthorCache = cacheManager.getCache("postByAuthor");
+    allPostsByUserIdCache = cacheManager.getCache("allPostsByUserId");
+    allPostsByAuthorCache = cacheManager.getCache("allPostsByAuthor");
   }
 
   @Test
@@ -530,5 +542,44 @@ public class RepositoryTest {
   public void testFindUserById_InvalidId() {
     // Find a user by an invalid ID
     assertThrows(NoSuchElementException.class, () -> userRepository.findById(999L).orElseThrow());
+  }
+
+  @Test
+  public void testCachingFindByAuthor() {
+    // Clear the cache before the test
+    postByAuthorCache.clear();
+
+    // First call should not be cached
+    assertNull(postByAuthorCache.get(userName));
+
+    // Second call should be cached
+    postRepository.findByAuthor(userName);
+    assertNotNull(postByAuthorCache.get(userName));
+  }
+
+  @Test
+  public void testCachingFindAllByUserId() {
+    // Clear the cache before the test
+    allPostsByUserIdCache.clear();
+
+    // First call should not be cached
+    assertNull(allPostsByUserIdCache.get(1L));
+
+    // Second call should be cached
+    postRepository.findAllByUserId(1L);
+    assertNotNull(postByAuthorCache.get(userName));
+  }
+
+  @Test
+  public void testCachingFindAllByAuthor() {
+    // Clear the cache before the test
+    allPostsByAuthorCache.clear();
+
+    // First call should not be cached
+    assertNull(allPostsByAuthorCache.get(userName));
+
+    // Second call should be cached
+    postRepository.findAllByAuthor(userName);
+    assertNotNull(postByAuthorCache.get(userName));
   }
 }
