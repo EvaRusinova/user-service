@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-  @ExceptionHandler(handleCustomException.class)
-  public ResponseEntity<ErrorResponse> handleMyAppException(handleCustomException ex) {
+  @ExceptionHandler(CustomException.class)
+  public ResponseEntity<ErrorResponse> handleCustomException(CustomException ex) {
     ErrorResponse errorResponse =
         ErrorResponse.builder()
             .status(HttpStatus.BAD_REQUEST.value())
@@ -59,7 +59,7 @@ public class GlobalExceptionHandler {
   }
 
   @ExceptionHandler(IllegalArgumentException.class)
-  public ResponseEntity<ErrorResponse> handleIllegalEx(handleCustomException ex) {
+  public ResponseEntity<ErrorResponse> handleIllegalEx(CustomException ex) {
     ErrorResponse errorResponse =
         ErrorResponse.builder()
             .status(HttpStatus.SERVICE_UNAVAILABLE.value())
@@ -71,7 +71,7 @@ public class GlobalExceptionHandler {
   }
 
   @ExceptionHandler(DataIntegrityViolationException.class)
-  public ResponseEntity<ErrorResponse> handleDataIntegrityViolationEx(handleCustomException ex) {
+  public ResponseEntity<ErrorResponse> handleDataIntegrityViolationEx(CustomException ex) {
     ErrorResponse errorResponse =
         ErrorResponse.builder()
             .status(HttpStatus.CONFLICT.value())
@@ -95,7 +95,7 @@ public class GlobalExceptionHandler {
   }
 
   @ExceptionHandler(Exception.class)
-  public ResponseEntity<ErrorResponse> handleException(handleCustomException ex) {
+  public ResponseEntity<ErrorResponse> handleException(CustomException ex) {
     ErrorResponse errorResponse =
         ErrorResponse.builder()
             .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
