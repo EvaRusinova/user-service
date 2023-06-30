@@ -30,6 +30,8 @@ public class RepositoryTest {
   private Cache allPostsByUserIdCache;
   private Cache allPostsByAuthorCache;
 
+  private final String userName = "John";
+
   @BeforeEach
   public void setup() {
     userRepository.deleteAll();
@@ -548,11 +550,11 @@ public class RepositoryTest {
     postByAuthorCache.clear();
 
     // First call should not be cached
-    assertNull(postByAuthorCache.get("John"));
+    assertNull(postByAuthorCache.get(userName));
 
     // Second call should be cached
-    Post post1 = postRepository.findByAuthor("John");
-    assertNotNull(postByAuthorCache.get("John"));
+    postRepository.findByAuthor(userName);
+    assertNotNull(postByAuthorCache.get(userName));
   }
 
   @Test
@@ -564,8 +566,8 @@ public class RepositoryTest {
     assertNull(allPostsByUserIdCache.get(1L));
 
     // Second call should be cached
-    List<Post> posts1 = postRepository.findAllByUserId(1L);
-    assertNotNull(postByAuthorCache.get("John"));
+    postRepository.findAllByUserId(1L);
+    assertNotNull(postByAuthorCache.get(userName));
   }
 
   @Test
@@ -574,10 +576,10 @@ public class RepositoryTest {
     allPostsByAuthorCache.clear();
 
     // First call should not be cached
-    assertNull(allPostsByAuthorCache.get("John"));
+    assertNull(allPostsByAuthorCache.get(userName));
 
     // Second call should be cached
-    List<Post> posts1 = postRepository.findAllByAuthor("John");
-    assertNotNull(postByAuthorCache.get("John"));
+    postRepository.findAllByAuthor(userName);
+    assertNotNull(postByAuthorCache.get(userName));
   }
 }
