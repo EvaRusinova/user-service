@@ -11,9 +11,9 @@
 	</parent>
 
 	<groupId>com.example</groupId>
-	<artifactId>initial-first-project</artifactId>
+	<artifactId>user-service</artifactId>
 	<version>1.0.0</version>
-	<name>initial-first-project</name>
+	<name>user-service</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
