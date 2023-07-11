@@ -12,97 +12,59 @@ public class GlobalExceptionHandler {
 
   @ExceptionHandler(CustomException.class)
   public ResponseEntity<ErrorResponse> handleCustomException(CustomException ex) {
-    ErrorResponse errorResponse =
-        ErrorResponse.builder()
-            .status(HttpStatus.BAD_REQUEST.value())
-            .message(ex.getMessage())
-            .errorCode(ex.getErrorCode())
-            .build();
-
-    return ResponseEntity.badRequest().body(errorResponse);
+    return buildResponseEntity(HttpStatus.BAD_REQUEST, ex);
   }
 
   @ExceptionHandler(DatabaseException.class)
   public ResponseEntity<ErrorResponse> handleDatabaseException(DatabaseException ex) {
-    ErrorResponse errorResponse =
-        ErrorResponse.builder()
-            .status(HttpStatus.CONFLICT.value())
-            .message(ex.getMessage())
-            .errorCode(ex.getErrorCode())
-            .build();
-
-    return ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponse);
+    return buildResponseEntity(HttpStatus.CONFLICT, ex);
   }
 
   @ExceptionHandler(AuthorizationException.class)
   public ResponseEntity<ErrorResponse> handleAuthorizationException(AuthorizationException ex) {
-    ErrorResponse errorResponse =
-        ErrorResponse.builder()
-            .status(HttpStatus.UNAUTHORIZED.value())
-            .message(ex.getMessage())
-            .errorCode(ex.getErrorCode())
-            .build();
-
-    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
+    return buildResponseEntity(HttpStatus.UNAUTHORIZED, ex);
   }
 
   @ExceptionHandler(ServerErrorException.class)
   public ResponseEntity<ErrorResponse> handleServerErrorException(ServerErrorException ex) {
-    ErrorResponse errorResponse =
-        ErrorResponse.builder()
-            .status(HttpStatus.SERVICE_UNAVAILABLE.value())
-            .message(ex.getMessage())
-            .errorCode(ex.getErrorCode())
-            .build();
-
-    return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(errorResponse);
+    return buildResponseEntity(HttpStatus.SERVICE_UNAVAILABLE, ex);
   }
 
   @ExceptionHandler(IllegalArgumentException.class)
-  public ResponseEntity<ErrorResponse> handleIllegalEx(CustomException ex) {
-    ErrorResponse errorResponse =
-        ErrorResponse.builder()
-            .status(HttpStatus.SERVICE_UNAVAILABLE.value())
-            .message(ex.getMessage())
-            .errorCode(ex.getErrorCode())
-            .build();
-
-    return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(errorResponse);
+  public ResponseEntity<ErrorResponse> handleIllegalEx(IllegalArgumentException ex) {
+    return buildResponseEntity(HttpStatus.SERVICE_UNAVAILABLE, ex);
   }
 
   @ExceptionHandler(DataIntegrityViolationException.class)
-  public ResponseEntity<ErrorResponse> handleDataIntegrityViolationEx(CustomException ex) {
-    ErrorResponse errorResponse =
-        ErrorResponse.builder()
-            .status(HttpStatus.CONFLICT.value())
-            .message(ex.getMessage())
-            .errorCode(ex.getErrorCode())
-            .build();
-    return ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponse);
+  public ResponseEntity<ErrorResponse> handleDataIntegrityViolationEx(
+      DataIntegrityViolationException ex) {
+    return buildResponseEntity(HttpStatus.CONFLICT, ex);
   }
 
   @ExceptionHandler(InvalidCredentialsException.class)
   public ResponseEntity<ErrorResponse> handleInvalidCredentialsException(
       InvalidCredentialsException ex) {
-    ErrorResponse errorResponse =
-        ErrorResponse.builder()
-            .status(HttpStatus.UNAUTHORIZED.value())
-            .message(ex.getMessage())
-            .errorCode(ex.getErrorCode())
-            .build();
-
-    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
+    return buildResponseEntity(HttpStatus.UNAUTHORIZED, ex);
   }
 
-  @ExceptionHandler(Exception.class)
-  public ResponseEntity<ErrorResponse> handleException(CustomException ex) {
+  @ExceptionHandler(RuntimeException.class)
+  public ResponseEntity<ErrorResponse> handleRuntimeException(RuntimeException ex) {
+    return buildResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR, ex);
+  }
+
+  private <T extends RuntimeException> ResponseEntity<ErrorResponse> buildResponseEntity(
+      HttpStatus status, T ex) {
+    String errorCode = null;
+    if (ex instanceof CustomException) {
+      errorCode = ((CustomException) ex).getErrorCode();
+    }
+
     ErrorResponse errorResponse =
         ErrorResponse.builder()
-            .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
+            .status(status.value())
             .message(ex.getMessage())
-            .errorCode(ex.getErrorCode())
+            .errorCode(errorCode)
             .build();
-
-    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+    return ResponseEntity.status(status).body(errorResponse);
   }
 }
