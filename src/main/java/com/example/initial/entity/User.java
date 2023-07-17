@@ -56,7 +56,6 @@ public class User extends BaseEntity {
   private boolean isActive;
 
   @CreditCardNumber(message = "Invalid credit card number")
-  @NotBlank(message = "Credit card number can not be null")
   @Column(name = "credit_card")
   private String creditCard;
 
