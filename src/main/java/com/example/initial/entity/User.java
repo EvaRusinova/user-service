@@ -45,7 +45,7 @@ public class User extends BaseEntity {
   private String password;
 
   @Email(message = "Invalid email format")
-  @Column(name = "email")
+  @Column(name = "email", unique = true)
   private String email;
 
   @Min(value = 18, message = "Age must be at least 18")
