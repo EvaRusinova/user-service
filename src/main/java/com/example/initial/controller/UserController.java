@@ -41,11 +41,6 @@ public class UserController {
   @PostMapping("/register")
   public ResponseEntity<String> registerUser(@RequestBody UserRegistrationDto userRegistrationDto) {
     userService.registerUser(userRegistrationDto);
-
-    log.info(
-        "Successful registration for username: {}, with an email: {}. You're logged in!",
-        userRegistrationDto.getUserName(),
-        userRegistrationDto.getEmail());
     return ResponseEntity.ok("Registration successful");
   }
 

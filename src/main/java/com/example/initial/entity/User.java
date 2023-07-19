@@ -48,7 +48,7 @@ public class User extends BaseEntity {
   @Column(name = "email", unique = true)
   private String email;
 
-  @Min(value = 18, message = "Age must be at least 18")
+  @Min(value = 18, message = "User must be 18 or older to register")
   @Column(name = "age")
   private Integer age;
 
