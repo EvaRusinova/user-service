@@ -2,24 +2,24 @@ package com.example.initial.service.impl;
 
 import com.example.initial.dto.UserRegistrationDto;
 import com.example.initial.entity.User;
-import com.example.initial.producer.UserRegistrationEventPublisher;
+import com.example.initial.event.UserRegistrationEvent;
+import com.example.initial.messaging.EventPublisher;
 import com.example.initial.repository.UserRepository;
 import com.example.initial.service.UserService;
 import java.util.List;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 @Slf4j
-@Service
 @Validated
-@RequiredArgsConstructor
+@AllArgsConstructor
+@Service
 public class UserServiceImpl implements UserService {
 
   private final UserRepository userRepository;
-
-  private final UserRegistrationEventPublisher eventPublisher;
+  private final EventPublisher eventPublisher;
 
   public void saveAll(List<User> users) {
     userRepository.saveAll(users);
@@ -33,20 +33,13 @@ public class UserServiceImpl implements UserService {
     return userRepository.findById(userId).orElseThrow();
   }
 
+  @SuppressWarnings("unused")
   private User findByEmail(String email) {
     return userRepository.findByEmail(email);
   }
 
-  private Boolean existsByEmail(String email) {
-    return userRepository.existsByEmail(email);
-  }
-
-  private Boolean existsByUserName(String userName) {
-    return userRepository.existsByUserName(userName);
-  }
-
   public User registerUser(UserRegistrationDto userRegistrationDto) {
-    User user =
+    var user =
         User.builder()
             .name(userRegistrationDto.getName())
             .age(userRegistrationDto.getAge())
@@ -56,11 +49,13 @@ public class UserServiceImpl implements UserService {
             .build();
     log.info(
         "Successful registration for username: {}, with an email: {}. You're logged in!",
-        userRegistrationDto.getUserName(),
-        userRegistrationDto.getEmail());
+        user.getUserName(),
+        user.getEmail());
 
-    eventPublisher.publishUserRegistrationEvent(user.getUserName(), user.getEmail());
+    user = userRepository.save(user);
 
-    return userRepository.save(user);
+    UserRegistrationEvent event = new UserRegistrationEvent(user.getUserName(), user.getEmail());
+    eventPublisher.publishEvent("user-registration-exchange", "user-registration-key", event);
+    return user;
   }
 }

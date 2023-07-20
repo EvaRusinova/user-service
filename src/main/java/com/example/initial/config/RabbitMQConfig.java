@@ -1,5 +1,6 @@
 package com.example.initial.config;
 
+import lombok.AllArgsConstructor;
 import org.springframework.amqp.core.DirectExchange;
 import org.springframework.amqp.core.Exchange;
 import org.springframework.amqp.rabbit.annotation.EnableRabbit;
@@ -11,6 +12,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @EnableRabbit
+@AllArgsConstructor
 public class RabbitMQConfig {
 
   // RabbitMQ connection properties
