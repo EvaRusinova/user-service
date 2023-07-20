@@ -45,10 +45,10 @@ public class User extends BaseEntity {
   private String password;
 
   @Email(message = "Invalid email format")
-  @Column(name = "email")
+  @Column(name = "email", unique = true)
   private String email;
 
-  @Min(value = 18, message = "Age must be at least 18")
+  @Min(value = 18, message = "User must be 18 or older to register")
   @Column(name = "age")
   private Integer age;
 
@@ -56,7 +56,6 @@ public class User extends BaseEntity {
   private boolean isActive;
 
   @CreditCardNumber(message = "Invalid credit card number")
-  @NotBlank(message = "Credit card number can not be null")
   @Column(name = "credit_card")
   private String creditCard;
 
