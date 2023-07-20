@@ -33,7 +33,6 @@ public class UserServiceImpl implements UserService {
     return userRepository.findById(userId).orElseThrow();
   }
 
-  @SuppressWarnings("unused")
   private User findByEmail(String email) {
     return userRepository.findByEmail(email);
   }
