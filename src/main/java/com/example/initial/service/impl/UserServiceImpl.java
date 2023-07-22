@@ -6,6 +6,7 @@ import com.example.initial.event.UserRegistrationEvent;
 import com.example.initial.messaging.EventPublisher;
 import com.example.initial.repository.UserRepository;
 import com.example.initial.service.UserService;
+import java.time.LocalDateTime;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -56,5 +57,10 @@ public class UserServiceImpl implements UserService {
     UserRegistrationEvent event = new UserRegistrationEvent(user.getUserName(), user.getEmail());
     eventPublisher.publishEvent("user-registration-exchange", "user-registration-key", event);
     return user;
+  }
+
+  public long countUsersRegisteredInTheLastSixMinutes() {
+    LocalDateTime sixMinutesAgo = LocalDateTime.now().minusMinutes(6);
+    return userRepository.countByCreationDateAfter(sixMinutesAgo);
   }
 }

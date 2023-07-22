@@ -13,4 +13,6 @@ public interface UserService {
   User findById(Long userId);
 
   User registerUser(UserRegistrationDto userRegistrationDto);
+
+  long countUsersRegisteredInTheLastSixMinutes();
 }

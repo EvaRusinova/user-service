@@ -32,7 +32,6 @@ public class UserController {
       // Invalid username/password
       throw new InvalidCredentialsException("Invalid username or password", "INVALID_CREDENTIALS");
     }
-
     // Successful login
     log.info("Successful login for username: {}", userLoginDto.getUserName());
     return ResponseEntity.ok("Login successful");
@@ -47,5 +46,13 @@ public class UserController {
   @GetMapping("/login/count")
   public int getLoginCount() {
     return loginCounterInterceptor.getLoginCount();
+  }
+
+  @GetMapping("/register/count")
+  public ResponseEntity<String> getRegistrationCount() {
+    long count = userService.countUsersRegisteredInTheLastSixMinutes();
+    String message = String.format("For the last 6 minutes %d users registered", count);
+    log.info(message);
+    return ResponseEntity.ok(message);
   }
 }
