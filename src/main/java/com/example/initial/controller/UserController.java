@@ -32,7 +32,6 @@ public class UserController {
       // Invalid username/password
       throw new InvalidCredentialsException("Invalid username or password", "INVALID_CREDENTIALS");
     }
-
     // Successful login
     log.info("Successful login for username: {}", userLoginDto.getUserName());
     return ResponseEntity.ok("Login successful");
