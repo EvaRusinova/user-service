@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
@@ -34,7 +35,7 @@ public class UserServiceImpl implements UserService {
     return userRepository.findById(userId).orElseThrow();
   }
 
-  private User findByEmail(String email) {
+  public User findByEmail(String email) {
     return userRepository.findByEmail(email);
   }
 
@@ -59,8 +60,4 @@ public class UserServiceImpl implements UserService {
     return user;
   }
 
-  public long countUsersRegisteredInTheLastSixMinutes() {
-    LocalDateTime sixMinutesAgo = LocalDateTime.now().minusMinutes(6);
-    return userRepository.countByCreationDateAfter(sixMinutesAgo);
-  }
 }

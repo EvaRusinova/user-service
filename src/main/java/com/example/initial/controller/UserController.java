@@ -48,11 +48,4 @@ public class UserController {
     return loginCounterInterceptor.getLoginCount();
   }
 
-  @GetMapping("/register/count")
-  public ResponseEntity<String> getRegistrationCount() {
-    long count = userService.countUsersRegisteredInTheLastSixMinutes();
-    String message = String.format("For the last 6 minutes %d users registered", count);
-    log.info(message);
-    return ResponseEntity.ok(message);
-  }
 }
