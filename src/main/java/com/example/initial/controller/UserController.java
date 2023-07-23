@@ -47,5 +47,4 @@ public class UserController {
   public int getLoginCount() {
     return loginCounterInterceptor.getLoginCount();
   }
-
 }

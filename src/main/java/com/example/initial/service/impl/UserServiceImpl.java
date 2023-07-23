@@ -6,11 +6,9 @@ import com.example.initial.event.UserRegistrationEvent;
 import com.example.initial.messaging.EventPublisher;
 import com.example.initial.repository.UserRepository;
 import com.example.initial.service.UserService;
-import java.time.LocalDateTime;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
@@ -59,5 +57,4 @@ public class UserServiceImpl implements UserService {
     eventPublisher.publishEvent("user-registration-exchange", "user-registration-key", event);
     return user;
   }
-
 }
