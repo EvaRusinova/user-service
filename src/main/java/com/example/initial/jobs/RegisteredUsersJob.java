@@ -17,7 +17,7 @@ public class RegisteredUsersJob {
   @Scheduled(cron = "0 0 */10 * * *")
   public void countUsersRegisteredInThe10Hours() {
     LocalDateTime tenHours = LocalDateTime.now().minusHours(10);
-    var userCount = userRepository.countByCreationDateAfter(tenHours);
+    var userCount = userRepository.countByCreatedAtAfter(tenHours);
     log.info("We have {} users registered in total for the last 10 hours", userCount);
   }
 }
