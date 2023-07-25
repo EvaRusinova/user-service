@@ -53,7 +53,10 @@ public class User extends BaseEntity {
   private Integer age;
 
   @Column(name = "is_active")
-  private boolean isActive;
+  private Boolean isActive;
+
+  @Column(name = "email_verified")
+  private Boolean isEmailVerified;
 
   @CreditCardNumber(message = "Invalid credit card number")
   @Column(name = "credit_card")

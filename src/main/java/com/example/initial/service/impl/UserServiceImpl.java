@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
     return userRepository.findById(userId).orElseThrow();
   }
 
-  private User findByEmail(String email) {
+  public User findByEmail(String email) {
     return userRepository.findByEmail(email);
   }
 
