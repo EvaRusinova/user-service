@@ -29,14 +29,14 @@ public class ApplicationRunner implements CommandLineRunner {
     List<User> testUsers =
         Arrays.asList(
             User.builder()
-                .name("John Doe")
+                .fullName("John Doe")
                 .userName("john_doe")
                 .password("john_doe")
                 .creditCard("4242424242424242")
                 .age(25)
                 .build(),
             User.builder()
-                .name("Jane Smith")
+                .fullName("Jane Smith")
                 .userName("jane_user")
                 .password("JANESMITH93")
                 .creditCard("4242424242424242")
@@ -50,7 +50,7 @@ public class ApplicationRunner implements CommandLineRunner {
                   .mapToObj(
                       i ->
                           Post.builder()
-                              .author(user.getName())
+                              .author(user.getFullName())
                               .title("Test Post " + (i + 1))
                               .body("Body of Test Post " + (i + 1))
                               .user(user)
@@ -63,7 +63,7 @@ public class ApplicationRunner implements CommandLineRunner {
                                 .mapToObj(
                                     j ->
                                         Comment.builder()
-                                            .author(user.getName())
+                                            .author(user.getFullName())
                                             .body("Test Comment " + (j + 1))
                                             .post(post)
                                             .build())
