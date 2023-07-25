@@ -56,7 +56,7 @@ public class User extends BaseEntity {
   private Boolean isActive;
 
   @Column(name = "email_verified")
-  private Boolean isEmailVerified;
+  private Boolean isEmailVerified = false;
 
   @CreditCardNumber(message = "Invalid credit card number")
   @Column(name = "credit_card")
