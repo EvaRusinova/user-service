@@ -47,7 +47,7 @@ public class RepositoryTest {
     // Create a user
     var user =
         User.builder()
-            .name("John Doe")
+            .fullName("John Doe")
             .userName("john_doe")
             .password("john_doe")
             .creditCard("4242424242424242")
@@ -59,7 +59,7 @@ public class RepositoryTest {
 
     // Verify the user is saved correctly
     assertNotNull(savedUser.getId());
-    assertEquals("John Doe", savedUser.getName());
+    assertEquals("John Doe", savedUser.getFullName());
   }
 
   @Test
@@ -67,7 +67,7 @@ public class RepositoryTest {
     // Create a user
     var user =
         User.builder()
-            .name("John Doe")
+            .fullName("John Doe")
             .userName("john_doe")
             .password("john_doe")
             .creditCard("4242424242424242")
@@ -78,7 +78,7 @@ public class RepositoryTest {
     // Create a post with the author set to the user's name
     Post post =
         Post.builder()
-            .author(user.getName())
+            .author(user.getFullName())
             .title("Hello World")
             .body("This is my first post")
             .user(user)
@@ -86,7 +86,7 @@ public class RepositoryTest {
     postRepository.save(post);
 
     // Find the post by author
-    Post foundPost = postRepository.findByAuthor(user.getName());
+    Post foundPost = postRepository.findByAuthor(user.getFullName());
 
     // Verify the post is found correctly
     assertNotNull(foundPost);
@@ -101,7 +101,7 @@ public class RepositoryTest {
     // Create a user
     var user =
         User.builder()
-            .name("John Doe")
+            .fullName("John Doe")
             .userName("john_doe")
             .password("john_doe")
             .creditCard("4242424242424242")
@@ -112,7 +112,7 @@ public class RepositoryTest {
     // Create a post
     Post post =
         Post.builder()
-            .author(user.getName())
+            .author(user.getFullName())
             .title("Hello World")
             .body("This is my first post")
             .build();
@@ -120,11 +120,11 @@ public class RepositoryTest {
 
     // Create a comment with the author set to the user's name
     Comment comment =
-        Comment.builder().author(user.getName()).body("Great post!").post(post).build();
+        Comment.builder().author(user.getFullName()).body("Great post!").post(post).build();
     commentRepository.save(comment);
 
     // Find the comment by author
-    Comment foundComment = commentRepository.findByAuthor(user.getName());
+    Comment foundComment = commentRepository.findByAuthor(user.getFullName());
 
     // Verify the comment is found correctly
     assertNotNull(foundComment);
@@ -139,7 +139,7 @@ public class RepositoryTest {
     // Create multiple users
     var user1 =
         User.builder()
-            .name("John Doe")
+            .fullName("John Doe")
             .userName("john_doe1")
             .password("john_doe")
             .creditCard("4242424242424242")
@@ -147,7 +147,7 @@ public class RepositoryTest {
             .build();
     var user2 =
         User.builder()
-            .name("John Doe")
+            .fullName("John Doe")
             .userName("john_doe2")
             .password("john_doe")
             .creditCard("4242424242424242")
@@ -167,7 +167,7 @@ public class RepositoryTest {
     // Create a user
     var user =
         User.builder()
-            .name("John Doe")
+            .fullName("John Doe")
             .userName("john_doe")
             .password("john_doe")
             .creditCard("4242424242424242")
@@ -178,14 +178,14 @@ public class RepositoryTest {
     // Create multiple posts by the user
     Post post1 =
         Post.builder()
-            .author(user.getName())
+            .author(user.getFullName())
             .user(user)
             .title("Post 1")
             .body("Body of post 1")
             .build();
     Post post2 =
         Post.builder()
-            .author(user.getName())
+            .author(user.getFullName())
             .user(user)
             .title("Post 2")
             .body("Body of post 2")
@@ -198,7 +198,7 @@ public class RepositoryTest {
     // Verify all posts by the user are found correctly
     assertFalse(foundPosts.isEmpty());
     assertEquals(2, foundPosts.size());
-    assertEquals(foundPosts.get(0).getAuthor(), user.getName());
+    assertEquals(foundPosts.get(0).getAuthor(), user.getFullName());
   }
 
   @Test
@@ -229,7 +229,7 @@ public class RepositoryTest {
     // Create a user
     var user =
         User.builder()
-            .name("John Doe")
+            .fullName("John Doe")
             .userName("john_doe")
             .password("john_doe")
             .creditCard("4242424242424242")
@@ -280,7 +280,7 @@ public class RepositoryTest {
     // Create multiple users
     var user1 =
         User.builder()
-            .name("John Doe")
+            .fullName("John Doe")
             .userName("john_doe1")
             .password("john_doe")
             .creditCard("4242424242424242")
@@ -288,7 +288,7 @@ public class RepositoryTest {
             .build();
     var user2 =
         User.builder()
-            .name("John Doe")
+            .fullName("John Doe")
             .userName("john_doe2")
             .password("john_doe")
             .creditCard("4242424242424242")
@@ -308,7 +308,7 @@ public class RepositoryTest {
     // Create a user
     var user =
         User.builder()
-            .name("John Doe")
+            .fullName("John Doe")
             .userName("john_doe")
             .password("john_doe")
             .creditCard("4242424242424242")
@@ -319,14 +319,14 @@ public class RepositoryTest {
     // Create multiple posts by the user
     Post post1 =
         Post.builder()
-            .author(user.getName())
+            .author(user.getFullName())
             .title("Post 1")
             .body("Body of post 1")
             .user(user)
             .build();
     Post post2 =
         Post.builder()
-            .author(user.getName())
+            .author(user.getFullName())
             .title("Post 2")
             .body("Body of post 2")
             .user(user)
@@ -345,7 +345,7 @@ public class RepositoryTest {
     // Create a user
     var user =
         User.builder()
-            .name("John Doe")
+            .fullName("John Doe")
             .userName("john_doe")
             .password("john_doe")
             .creditCard("4242424242424242")
@@ -359,7 +359,7 @@ public class RepositoryTest {
     // Verify the user is found correctly
     assertTrue(foundUser.isPresent());
     assertEquals(user.getId(), foundUser.get().getId());
-    assertEquals(user.getName(), foundUser.get().getName());
+    assertEquals(user.getFullName(), foundUser.get().getFullName());
   }
 
   @Test
@@ -470,7 +470,7 @@ public class RepositoryTest {
     // Create a user with a duplicate name
     var user1 =
         User.builder()
-            .name("John Doe")
+            .fullName("John Doe")
             .userName("john_doe")
             .password("john_doe")
             .creditCard("4242424242424242")
@@ -480,7 +480,7 @@ public class RepositoryTest {
 
     var user2 =
         User.builder()
-            .name("John Doe")
+            .fullName("John Doe")
             .userName("john_doe")
             .password("john_doe")
             .creditCard("4242424242424242")
@@ -514,7 +514,7 @@ public class RepositoryTest {
   @Test
   public void testSaveUser_NullName() {
     // Create a user with a null name
-    User user = User.builder().name(null).build();
+    User user = User.builder().fullName(null).build();
 
     // Attempt to save the user
     assertThrows(ConstraintViolationException.class, () -> userRepository.save(user));

@@ -2,10 +2,10 @@ package com.example.initial.dto;
 
 import lombok.Getter;
 
-@SuppressWarnings("unused")
 @Getter
+@SuppressWarnings("unused")
 public class UserRegistrationDto {
-  private String name;
+  private String fullName;
   private Integer age;
   private String email;
   private String userName;

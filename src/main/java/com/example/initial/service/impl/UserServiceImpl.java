@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
   public User registerUser(UserRegistrationDto userRegistrationDto) {
     var user =
         User.builder()
-            .name(userRegistrationDto.getName())
+            .fullName(userRegistrationDto.getFullName())
             .age(userRegistrationDto.getAge())
             .email(userRegistrationDto.getEmail())
             .userName(userRegistrationDto.getUserName())
@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService {
 
     user = userRepository.save(user);
 
-    UserRegistrationEvent event = new UserRegistrationEvent(user.getUserName(), user.getEmail());
+    UserRegistrationEvent event = new UserRegistrationEvent(user.getFullName(), user.getEmail());
     eventPublisher.publishEvent("user-registration-exchange", "user-registration-key", event);
     return user;
   }

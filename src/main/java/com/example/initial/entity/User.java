@@ -22,8 +22,8 @@ public class User extends BaseEntity {
 
   @Size(min = 2, max = 50, message = "Name must be between 2 and 50 characters")
   @NotBlank(message = "Name of the user can not be null")
-  @Column(name = "name")
-  private String name;
+  @Column(name = "full_name")
+  private String fullName;
 
   @OneToMany(
       mappedBy = "user",
