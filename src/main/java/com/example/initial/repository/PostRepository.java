@@ -15,8 +15,6 @@ public interface PostRepository extends JpaRepository<Post, Long> {
   @Cacheable("allPostsByUserId")
   List<Post> findAllByUserId(Long userId);
 
-  /// counting operations are typically fast and lightweight,also repeated requests would have diff
-  // response each time, NO CACHING
   Long countByUser(User user);
 
   @Cacheable("allPostsByAuthor")

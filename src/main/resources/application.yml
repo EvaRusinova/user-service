@@ -24,6 +24,14 @@ rabbitmq:
   username: guest
   password: guest
   virtualHost: "/"
+  queues:
+    email-verification-q: email-verification-queue
+  exchanges:
+    email-verification-ex: email-verification-exchange
+    user-registration-ex: user-registration-exchange
+  routing-keys:
+    email-verification-rk: email-verification-key
+    user-registration-rk: user-registration-key
 
 # Actuator
 management:
