@@ -1,3 +1,6 @@
+server:
+  port: 8081
+
 spring:
   profiles:
     active: local
@@ -13,8 +16,6 @@ spring:
   datasource:
     url: jdbc:h2:mem:testdb;DB_CLOSE_ON_EXIT=FALSE;IGNORECASE=TRUE
     initialize: false
-server:
-  port: 8081
 
  # RabbitMQ
 rabbitmq:
