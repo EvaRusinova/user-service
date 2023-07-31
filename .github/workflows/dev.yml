@@ -29,7 +29,7 @@ jobs:
 
       # Run the "build" task using the Gradle wrapper to build and test your project.
       - name: Build and Test
-        run: mvnw clean install
+        run: mvn clean install
 
       # This step builds a Docker image with the specified name and tag based on the current directory (where the Dockerfile is located).
       - name: Build Docker Image
