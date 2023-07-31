@@ -10,6 +10,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 @Getter
 @Setter
 @MappedSuperclass
+@Table(name = "base_entity")
 public class BaseEntity {
 
   @Id

@@ -19,7 +19,7 @@ public class EventListener {
   public void onVerifiedEmail(UserRegistrationEvent event) {
     var email = event.getEmail();
     User user = userRepository.findByEmail(email);
-    if(user == null) {
+    if (user == null) {
       log.error("User not found with email: {}", email);
       return;
     }
