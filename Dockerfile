@@ -5,7 +5,7 @@ FROM openjdk:20-jdk-slim
 WORKDIR /app
 
 # Copy the compiled Spring Boot application JAR file into the container at /app
-COPY build/libs/user-service-1.0.0.jar app.jar
+COPY target/user-service-1.0.0.jar app.jar
 
 # Expose the port that the Spring Boot application listens on
 EXPOSE 8081
