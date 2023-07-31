@@ -1,0 +1,40 @@
+name: Build and Tag Docker Image
+
+on:
+  push:
+    branches:
+      - dev
+      - master
+
+env:
+  IMAGE_TAG: latest
+  IMAGE_NAME: user-service
+  PORT: 8081
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Check out the code from the repository so that the workflow can access your project files.
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Set up Java 17 in the GitHub Actions runner environment using the AdoptOpenJDK distribution.
+      - name: Set up Java 20
+        uses: actions/setup-java@v2
+        with:
+          java-version: '20'
+          distribution: 'adopt'
+
+      # Run the "build" task using the Gradle wrapper to build and test your project.
+      - name: Build and Test
+        run: mvnw clean install
+
+      # This step builds a Docker image with the specified name and tag based on the current directory (where the Dockerfile is located).
+      - name: Build Docker Image
+        run: docker build -t ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} .
+
+      # Run the Docker image as a detached container, exposing and mapping the ports.
+      - name: Run Docker Image
+        run: docker run -d -p ${{ env.PORT }}:${{ env.PORT }} ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
