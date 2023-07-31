@@ -27,7 +27,11 @@ jobs:
           java-version: '20'
           distribution: 'adopt'
 
-      # Run the "build" task using the Gradle wrapper to build and test your project.
+      # Set executable permissions on the mvnw script
+      - name: Set execute permissions for mvnw
+        run: chmod +x mvnw
+
+      # Use the Maven wrapper to clean and build the project
       - name: Build and Test
         run: ./mvnw clean install
 
