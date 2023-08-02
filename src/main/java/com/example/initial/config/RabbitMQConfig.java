@@ -16,41 +16,41 @@ import org.springframework.context.annotation.Configuration;
 @RequiredArgsConstructor
 public class RabbitMQConfig {
 
-    @Value("${rabbitmq.host}")
-    private String rabbitmqHost;
+  @Value("${rabbitmq.host}")
+  private String rabbitmqHost;
 
-    @Value("${rabbitmq.port}")
-    private int rabbitmqPort;
+  @Value("${rabbitmq.port}")
+  private int rabbitmqPort;
 
-    @Value("${rabbitmq.username}")
-    private String rabbitmqUsername;
+  @Value("${rabbitmq.username}")
+  private String rabbitmqUsername;
 
-    @Value("${rabbitmq.password}")
-    private String rabbitmqPassword;
+  @Value("${rabbitmq.password}")
+  private String rabbitmqPassword;
 
-    @Value("${rabbitmq.virtualHost}")
-    private String rabbitmqVirtualHost;
+  @Value("${rabbitmq.virtualHost}")
+  private String rabbitmqVirtualHost;
 
-    @Value("${rabbitmq.exchanges.user-registration-ex}")
-    private String userRegistrationEx;
+  @Value("${rabbitmq.exchanges.user-registration-ex}")
+  private String userRegistrationEx;
 
-    @Bean
-    public ConnectionFactory connectionFactory() {
-        CachingConnectionFactory connectionFactory = new CachingConnectionFactory(rabbitmqHost);
-        connectionFactory.setPort(rabbitmqPort);
-        connectionFactory.setUsername(rabbitmqUsername);
-        connectionFactory.setPassword(rabbitmqPassword);
-        connectionFactory.setVirtualHost(rabbitmqVirtualHost);
-        return connectionFactory;
-    }
+  @Bean
+  public ConnectionFactory connectionFactory() {
+    CachingConnectionFactory connectionFactory = new CachingConnectionFactory(rabbitmqHost);
+    connectionFactory.setPort(rabbitmqPort);
+    connectionFactory.setUsername(rabbitmqUsername);
+    connectionFactory.setPassword(rabbitmqPassword);
+    connectionFactory.setVirtualHost(rabbitmqVirtualHost);
+    return connectionFactory;
+  }
 
-    @Bean
-    public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory) {
-        return new RabbitTemplate(connectionFactory);
-    }
+  @Bean
+  public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory) {
+    return new RabbitTemplate(connectionFactory);
+  }
 
-    @Bean
-    public Exchange userRegistrationExchange() {
-        return new DirectExchange(userRegistrationEx);
-    }
+  @Bean
+  public Exchange userRegistrationExchange() {
+    return new DirectExchange(userRegistrationEx);
+  }
 }
