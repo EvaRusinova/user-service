@@ -48,7 +48,7 @@ public class RepositoryTest {
     var user =
         User.builder()
             .fullName("John Doe")
-            .userName("john_doe")
+            .username("john_doe")
             .password("john_doe")
             .creditCard("4242424242424242")
             .age(25)
@@ -68,7 +68,7 @@ public class RepositoryTest {
     var user =
         User.builder()
             .fullName("John Doe")
-            .userName("john_doe")
+            .username("john_doe")
             .password("john_doe")
             .creditCard("4242424242424242")
             .age(25)
@@ -102,7 +102,7 @@ public class RepositoryTest {
     var user =
         User.builder()
             .fullName("John Doe")
-            .userName("john_doe")
+            .username("john_doe")
             .password("john_doe")
             .creditCard("4242424242424242")
             .age(25)
@@ -140,7 +140,7 @@ public class RepositoryTest {
     var user1 =
         User.builder()
             .fullName("John Doe")
-            .userName("john_doe1")
+            .username("john_doe1")
             .password("john_doe")
             .creditCard("4242424242424242")
             .age(25)
@@ -148,7 +148,7 @@ public class RepositoryTest {
     var user2 =
         User.builder()
             .fullName("John Doe")
-            .userName("john_doe2")
+            .username("john_doe2")
             .password("john_doe")
             .creditCard("4242424242424242")
             .age(25)
@@ -168,7 +168,7 @@ public class RepositoryTest {
     var user =
         User.builder()
             .fullName("John Doe")
-            .userName("john_doe")
+            .username("john_doe")
             .password("john_doe")
             .creditCard("4242424242424242")
             .age(25)
@@ -230,7 +230,7 @@ public class RepositoryTest {
     var user =
         User.builder()
             .fullName("John Doe")
-            .userName("john_doe")
+            .username("john_doe")
             .password("john_doe")
             .creditCard("4242424242424242")
             .age(25)
@@ -281,7 +281,7 @@ public class RepositoryTest {
     var user1 =
         User.builder()
             .fullName("John Doe")
-            .userName("john_doe1")
+            .username("john_doe1")
             .password("john_doe")
             .creditCard("4242424242424242")
             .age(25)
@@ -289,7 +289,7 @@ public class RepositoryTest {
     var user2 =
         User.builder()
             .fullName("John Doe")
-            .userName("john_doe2")
+            .username("john_doe2")
             .password("john_doe")
             .creditCard("4242424242424242")
             .age(25)
@@ -309,7 +309,7 @@ public class RepositoryTest {
     var user =
         User.builder()
             .fullName("John Doe")
-            .userName("john_doe")
+            .username("john_doe")
             .password("john_doe")
             .creditCard("4242424242424242")
             .age(25)
@@ -346,7 +346,7 @@ public class RepositoryTest {
     var user =
         User.builder()
             .fullName("John Doe")
-            .userName("john_doe")
+            .username("john_doe")
             .password("john_doe")
             .creditCard("4242424242424242")
             .age(25)
@@ -471,7 +471,7 @@ public class RepositoryTest {
     var user1 =
         User.builder()
             .fullName("John Doe")
-            .userName("john_doe")
+            .username("john_doe")
             .password("john_doe")
             .creditCard("4242424242424242")
             .age(25)
@@ -481,7 +481,7 @@ public class RepositoryTest {
     var user2 =
         User.builder()
             .fullName("John Doe")
-            .userName("john_doe")
+            .username("john_doe")
             .password("john_doe")
             .creditCard("4242424242424242")
             .age(25)

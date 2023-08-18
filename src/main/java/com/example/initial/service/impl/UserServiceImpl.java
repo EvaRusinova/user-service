@@ -10,6 +10,7 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
@@ -27,13 +28,14 @@ public class UserServiceImpl implements UserService {
 
   private final UserRepository userRepository;
   private final EventPublisher eventPublisher;
+  private final PasswordEncoder passwordEncoder;
 
   public void saveAll(List<User> users) {
     userRepository.saveAll(users);
   }
 
-  public User findByUserName(String userName) {
-    return userRepository.findByUserName(userName);
+  public User findByUsername(String username) {
+    return userRepository.findByUsername(username);
   }
 
   public User findById(Long userId) {
@@ -46,15 +48,17 @@ public class UserServiceImpl implements UserService {
             .fullName(userRegistrationDto.getFullName())
             .age(userRegistrationDto.getAge())
             .email(userRegistrationDto.getEmail())
-            .userName(userRegistrationDto.getUserName())
-            .password(userRegistrationDto.getPassword())
+            .username(userRegistrationDto.getUsername())
+            .password(
+                this.passwordEncoder.encode(
+                    userRegistrationDto.getPassword())) // Encode the password here
             .build();
 
     user = userRepository.save(user);
 
     log.info(
         "Successful registration for username: {}, with an email: {}. You're logged in!",
-        user.getUserName(),
+        user.getUsername(),
         user.getEmail());
 
     UserRegistrationEvent event = new UserRegistrationEvent(user.getFullName(), user.getEmail());

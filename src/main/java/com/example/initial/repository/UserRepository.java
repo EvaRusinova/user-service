@@ -10,7 +10,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
   long countByCreatedAtAfter(LocalDateTime start);
 
-  User findByUserName(String name);
+  User findByUsername(String username);
 
   User findByEmail(String email);
 }

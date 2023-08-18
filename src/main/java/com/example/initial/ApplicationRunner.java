@@ -3,6 +3,7 @@ package com.example.initial;
 import com.example.initial.entity.Comment;
 import com.example.initial.entity.Post;
 import com.example.initial.entity.User;
+import com.example.initial.enums.Role;
 import com.example.initial.service.UserService;
 import java.util.Arrays;
 import java.util.List;
@@ -14,6 +15,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableScheduling
 @RequiredArgsConstructor
@@ -21,6 +23,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 public class ApplicationRunner implements CommandLineRunner {
 
   private final UserService userService;
+  private final PasswordEncoder passwordEncoder;
 
   public static void main(String[] args) {
     SpringApplication.run(ApplicationRunner.class, args);
@@ -32,16 +35,18 @@ public class ApplicationRunner implements CommandLineRunner {
         Arrays.asList(
             User.builder()
                 .fullName("John Doe")
-                .userName("john_doe")
-                .password("john_doe")
+                .username("john_doe")
+                .password(passwordEncoder.encode("eva213"))
+                .roles(Role.valueOf("USER"))
                 .creditCard("4242424242424242")
                 .age(25)
                 .build(),
             User.builder()
-                .fullName("Jane Smith")
-                .userName("jane_user")
-                .password("JANESMITH93")
+                .fullName("admin")
+                .username("admin")
+                .password(passwordEncoder.encode("adminADMIN"))
                 .creditCard("4242424242424242")
+                .roles(Role.valueOf("ADMIN"))
                 .age(25)
                 .build());
 
