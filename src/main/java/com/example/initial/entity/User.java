@@ -1,14 +1,15 @@
 package com.example.initial.entity;
 
+import com.example.initial.enums.Role;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
+import java.util.Collection;
 import java.util.List;
 import lombok.*;
 import org.hibernate.validator.constraints.CreditCardNumber;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Getter
 @Setter
@@ -18,7 +19,7 @@ import org.hibernate.validator.constraints.CreditCardNumber;
 @AllArgsConstructor
 @Entity
 @Table(name = "users")
-public class User extends BaseEntity {
+public class User extends BaseEntity implements UserDetails {
 
   @Size(min = 2, max = 50, message = "Name must be between 2 and 50 characters")
   @NotBlank(message = "Name of the user can not be null")
@@ -36,10 +37,11 @@ public class User extends BaseEntity {
 
   @Size(min = 5, max = 20, message = "User name must be between 5 and 20 characters")
   @NotBlank(message = "User name can not be null")
+  @NotNull
   @Column(name = "user_name", unique = true)
-  private String userName;
+  private String username;
 
-  @Size(min = 2, max = 50, message = "Password must be between 2 and 50 characters")
+  @Size(min = 2, max = 100, message = "Password must be between 2 and 100 characters")
   @NotBlank(message = "Password can not be null")
   @Column(name = "password")
   private String password;
@@ -69,4 +71,31 @@ public class User extends BaseEntity {
       fetch = FetchType.EAGER)
   @JsonIgnoreProperties("user")
   private List<Photo> photos;
+
+  @Enumerated(EnumType.STRING)
+  private Role roles;
+
+  public Collection<? extends GrantedAuthority> getAuthorities() {
+    return null;
+  }
+
+  public String getUsername() {
+    return username;
+  }
+
+  public boolean isAccountNonExpired() {
+    return true;
+  }
+
+  public boolean isAccountNonLocked() {
+    return true;
+  }
+
+  public boolean isCredentialsNonExpired() {
+    return true;
+  }
+
+  public boolean isEnabled() {
+    return isActive != null && isActive;
+  }
 }
