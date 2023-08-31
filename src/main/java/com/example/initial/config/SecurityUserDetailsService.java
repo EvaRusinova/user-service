@@ -22,7 +22,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
-public class SecurityConfig {
+public class SecurityUserDetailsService {
 
   private final UserDetailsServiceSecurity userDetailsServiceSecurity;
 
