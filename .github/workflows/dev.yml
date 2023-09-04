@@ -35,8 +35,10 @@ jobs:
       # Use the Maven wrapper to clean and build the project
       - name: Build and Test
         run: ./mvnw clean install
+#        env:
+#          MY_SECRET_KEY: <span class="math-inline">\{\{ secrets\.MY\_SECRET\_KEY \}\}
         env:
-          MY_APP_SECRET_KEY: ${{ secrets.MY_SECRET_KEY }}
+          MY_SECRET_KEY: ${{ secrets.MY_SECRET_KEY }}
 
       # This step builds a Docker image with the specified name and tag based on the current directory (where the Dockerfile is located).
       - name: Build Docker Image
