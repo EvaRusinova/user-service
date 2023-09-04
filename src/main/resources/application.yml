@@ -7,6 +7,8 @@ spring:
   h2:
     console:
       enabled: true
+      settings:
+        web-allow-others: true
   jpa:
     show_sql: false
     database: H2
@@ -15,14 +17,15 @@ spring:
       ddl-auto: update
   datasource:
     url: jdbc:h2:mem:testdb;MODE=MySQL;DB_CLOSE_ON_EXIT=FALSE;IGNORECASE=TRUE
-#    username: h2_db_dev_user
-#    password: 682nsda67
-    # TODO
-    username: ${H2_DEV_USER}
-    password: ${H2_DEV_PASS}
+    username: sa
     initialize: false
   flyway:
     baseline-on-migrate: true
+
+my:
+  test:
+    env:
+      I_AM_SEXY=${I_AM_SEXY:someDefaultValue}
 
  # RabbitMQ
 rabbitmq:
