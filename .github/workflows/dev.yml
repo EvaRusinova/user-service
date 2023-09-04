@@ -38,10 +38,13 @@ jobs:
         env:
           MY_SECRET_KEY: ${{ secrets.MY_SECRET_KEY }}
 
+      # Print the value of MY_SECRET_KEY
+      - name: Print the value of MY_SECRET_KEY
+        run: echo $MY_SECRET_KEY
+
       # This step builds a Docker image with the specified name and tag based on the current directory (where the Dockerfile is located).
       - name: Build Docker Image
-        run: docker buildx build -f Dockerfile -t env.IMAGE_NAME:latest .
-      #        run: docker buildx build --build-arg MY_SECRET_KEY=*** -t ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} .
+        run: docker buildx build --build-arg MY_SECRET_KEY=*** -t ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} .
 
       # Run the Docker image as a detached container, exposing and mapping the ports.
       - name: Run Docker Image
