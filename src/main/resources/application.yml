@@ -22,7 +22,7 @@ spring:
 
 my:
   secret:
-    key: ${ MY_SECRET_KEY }
+    key: ${MY_SECRET_KEY}
 
  # RabbitMQ
 rabbitmq:
