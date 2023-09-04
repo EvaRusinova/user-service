@@ -50,5 +50,6 @@ jobs:
       - name: Run Docker Image
         run: docker run -d -p ${{ env.PORT }}:${{ env.PORT }} ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
 
+      # Run a command in the container
       - name: Run a command in the container
-        run: docker run -it ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} echo $MY_SECRET_KEY
+        run: docker run ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} echo $MY_SECRET_KEY
