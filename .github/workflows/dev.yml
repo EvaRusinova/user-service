@@ -40,7 +40,7 @@ jobs:
 
       # This step builds a Docker image with the specified name and tag based on the current directory (where the Dockerfile is located).
       - name: Build Docker Image
-        run: docker buildx build --build-arg MY_SECRET_KEY=${{ secrets.MY_SECRET_KEY }} -t ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} .
+        run: docker buildx build --build-arg MY_SECRET_KEY=${{ secrets.MY_SECRET_KEY }} -t env.IMAGE_NAME:${{ env.IMAGE_TAG }} .
 
       #        run: docker buildx build --build-arg MY_SECRET_KEY=*** -t ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} .
 
