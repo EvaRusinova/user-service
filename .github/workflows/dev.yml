@@ -41,8 +41,4 @@ jobs:
 
       # Run the Docker image as a detached container, exposing and mapping the ports.
       - name: Run Docker Image
-        run: docker run -d -p ${{ env.PORT }}:${{ env.PORT }} ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
-
-      - name: Run Spring Boot App
-        env:
-          I_AM_SEXY: ${{ secrets.I_AM_SEXY }}
+        run: docker run -d -p ${{ env.PORT }}:${{ env.PORT }} -e I_AM_SEXY=${{ secrets.I_AM_SEXY }} ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
