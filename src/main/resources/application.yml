@@ -21,9 +21,8 @@ spring:
     baseline-on-migrate: true
 
 my:
-  test:
-    env:
-      I_AM_SEXY=${I_AM_SEXY:someDefaultValue}
+  secret:
+    key: ${MY_SECRET_KEY}
 
  # RabbitMQ
 rabbitmq:
