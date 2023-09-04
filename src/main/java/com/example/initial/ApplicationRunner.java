@@ -7,7 +7,6 @@ import com.example.initial.enums.Role;
 import com.example.initial.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -26,10 +25,6 @@ import java.util.stream.IntStream;
 @SpringBootApplication
 public class ApplicationRunner implements CommandLineRunner {
 
-    @Value("${my.secret.key}")
-    private String mySecretKey;
-
-
   private final UserService userService;
   private final PasswordEncoder passwordEncoder;
 
@@ -39,11 +34,6 @@ public class ApplicationRunner implements CommandLineRunner {
 
   @Override
   public void run(String... args) {
-
-      System.out.println("My test env: " + mySecretKey);
-      log.info("My test env: " + mySecretKey);
-
-
       List<User> testUsers =
         Arrays.asList(
             User.builder()
