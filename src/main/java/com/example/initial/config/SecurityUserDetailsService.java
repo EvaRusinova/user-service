@@ -39,13 +39,16 @@ public class SecurityUserDetailsService {
     http.authorizeHttpRequests(
             (authorize) ->
                 authorize
-                        .requestMatchers("/h2-console/**", "/login/count").hasRole(Role.ADMIN.name())
+                    .requestMatchers("/h2-console/**", "/login/count")
+                    .hasRole(Role.ADMIN.name())
                     .anyRequest()
                     .authenticated())
         .httpBasic(withDefaults())
         .formLogin(withDefaults());
     http.csrf(csrf -> csrf.ignoringRequestMatchers(toH2Console()));
-    http.headers(securityHeadersConfigurer -> securityHeadersConfigurer.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable));
+    http.headers(
+        securityHeadersConfigurer ->
+            securityHeadersConfigurer.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable));
     return http.build();
   }
 

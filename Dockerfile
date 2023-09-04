@@ -1,6 +1,10 @@
 # Use an official OpenJDK runtime as the base image
 FROM openjdk:20-jdk-slim
 
+# Arguments and env vars
+ARG MY_SECRET_KEY
+ENV MY_SECRET_KEY=${MY_SECRET_KEY}
+
 # Set the working directory in the container
 WORKDIR /app
 

@@ -5,6 +5,7 @@ on:
     branches:
       - dev
       - master
+      - externalized-env-var
 
 env:
   IMAGE_TAG: latest
@@ -34,10 +35,12 @@ jobs:
       # Use the Maven wrapper to clean and build the project
       - name: Build and Test
         run: ./mvnw clean install
+        env:
+          MY_SECRET_KEY: ${{ secrets.MY_SECRET_KEY }}
 
       # This step builds a Docker image with the specified name and tag based on the current directory (where the Dockerfile is located).
       - name: Build Docker Image
-        run: docker build -t ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} .
+        run: docker buildx build --build-arg MY_SECRET_KEY=*** -t ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} .
 
       # Run the Docker image as a detached container, exposing and mapping the ports.
       - name: Run Docker Image

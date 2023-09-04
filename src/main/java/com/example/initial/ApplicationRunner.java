@@ -25,9 +25,6 @@ import java.util.stream.IntStream;
 @SpringBootApplication
 public class ApplicationRunner implements CommandLineRunner {
 
-//    @Value("${I_AM_SEXY}")
-//    public String iamSexyValue;
-
   private final UserService userService;
   private final PasswordEncoder passwordEncoder;
 
@@ -37,11 +34,6 @@ public class ApplicationRunner implements CommandLineRunner {
 
   @Override
   public void run(String... args) {
-
-//      System.out.println("My test env: " + iamSexyValue);
-//      log.info("My test env: " + iamSexyValue);
-
-
       List<User> testUsers =
         Arrays.asList(
             User.builder()

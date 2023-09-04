@@ -49,9 +49,7 @@ public class UserServiceImpl implements UserService {
             .age(userRegistrationDto.getAge())
             .email(userRegistrationDto.getEmail())
             .username(userRegistrationDto.getUsername())
-            .password(
-                this.passwordEncoder.encode(
-                    userRegistrationDto.getPassword()))
+            .password(this.passwordEncoder.encode(userRegistrationDto.getPassword()))
             .build();
 
     user = userRepository.save(user);
