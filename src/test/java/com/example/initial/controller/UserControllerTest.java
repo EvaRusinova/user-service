@@ -25,9 +25,9 @@ public class UserControllerTest {
     UserRegistrationDto userRegistrationDto = new UserRegistrationDto();
     userRegistrationDto.setFullName("John Doe");
     userRegistrationDto.setAge(30);
-    userRegistrationDto.setEmail("johndoe@example.com");
-    userRegistrationDto.setUsername("johndoe");
-    userRegistrationDto.setPassword("password");
+    userRegistrationDto.setEmail("john.doemn33@gmail.com");
+    userRegistrationDto.setUsername("johndoe1235");
+    userRegistrationDto.setPassword("password3321tc");
 
     mockMvc
         .perform(
