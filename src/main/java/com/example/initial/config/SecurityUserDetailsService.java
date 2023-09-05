@@ -10,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -40,16 +39,21 @@ public class SecurityUserDetailsService {
     http.authorizeHttpRequests(
             (authorize) ->
                 authorize
-                    .requestMatchers(toH2Console()).hasRole(Role.ADMIN.name())
-                    .requestMatchers(HttpMethod.POST, "/register").permitAll()
+                    .requestMatchers("/register")
+                    .permitAll()
+                    .requestMatchers(toH2Console())
+                    .hasRole(Role.ADMIN.name())
                     .anyRequest()
                     .authenticated())
         .httpBasic(withDefaults())
         .formLogin(withDefaults());
+    http.csrf(csrf -> csrf.ignoringRequestMatchers("/register"));
     http.csrf(csrf -> csrf.ignoringRequestMatchers(toH2Console()));
     http.headers(
         securityHeadersConfigurer ->
-            securityHeadersConfigurer.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable));
+            securityHeadersConfigurer
+                .frameOptions(HeadersConfigurer.FrameOptionsConfig::disable)
+                .disable());
     return http.build();
   }
 
