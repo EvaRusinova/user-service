@@ -5,6 +5,11 @@ import com.example.initial.entity.Post;
 import com.example.initial.entity.User;
 import com.example.initial.enums.Role;
 import com.example.initial.service.UserService;
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
@@ -12,12 +17,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 @Slf4j
 @EnableScheduling
@@ -28,13 +27,13 @@ public class ApplicationRunner implements CommandLineRunner {
   private final UserService userService;
   private final PasswordEncoder passwordEncoder;
 
-    public static void main(String[] args) {
+  public static void main(String[] args) {
     SpringApplication.run(ApplicationRunner.class, args);
   }
 
   @Override
   public void run(String... args) {
-      List<User> testUsers =
+    List<User> testUsers =
         Arrays.asList(
             User.builder()
                 .fullName("John Doe")

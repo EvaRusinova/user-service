@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -39,8 +40,8 @@ public class SecurityUserDetailsService {
     http.authorizeHttpRequests(
             (authorize) ->
                 authorize
-                    .requestMatchers("/h2-console/**", "/login/count")
-                    .hasRole(Role.ADMIN.name())
+                    .requestMatchers(toH2Console()).hasRole(Role.ADMIN.name())
+                    .requestMatchers(HttpMethod.POST, "/register").permitAll()
                     .anyRequest()
                     .authenticated())
         .httpBasic(withDefaults())

@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  # Spring Boot application
+  email-service:
+    container_name: email-service  # Sets the container name for the Spring Boot app service
+    build:
+      context: ../email-service  # Specifies the current directory as the build context
+      dockerfile: Dockerfile  # Specifies the Dockerfile to use for building the image
+    ports:
+      - "8082:8082"  # Maps port 8082 of the host to port 8082 of the container
+    depends_on:
+      - rabbitmq  # Instructs Docker to start the RabbitMQ container before this one
+    environment:
+      SPRING_RABBITMQ_HOST: rabbitmq  # Sets the environment variable for Spring Boot app to use RabbitMQ service
+
+  # RabbitMQ service
+  rabbitmq:
+    container_name: rabbitmq-service  # Sets the container name for the RabbitMQ service
+    image: rabbitmq:latest  # Uses the latest RabbitMQ image from Docker Hub
+    ports:
+      - "5672:5672"  # Maps port 5672 of the host to port 5672 of the container (RabbitMQ default port)
+      - "15672:15672"  # Maps port 15672 of the host to port 15672 of the container (RabbitMQ management UI port)
+    environment:
+      RABBITMQ_DEFAULT_USER: guest  # Sets the default RabbitMQ username to "guest"
+      RABBITMQ_DEFAULT_PASS: guest  # Sets the default RabbitMQ password to "guest"
+      RABBITMQ_DEFAULT_VHOST: "/"  # Sets the default RabbitMQ virtual host to "/"
+    volumes:
+      - "rabbitmq_data:/var/lib/rabbitmq"  # Mounts a named volume to persist RabbitMQ data outside the container
+
+volumes:
+  rabbitmq_data:  # Defines a named volume for RabbitMQ data persistence
+
+
+# To run application you need to have rabbitmq-service and user-service
+# Go to root dir and execute 'docker-compose up -d --build' this will start them up
+# Then go to ApplicationRunner.class and start the application in debug mode. Voala :)
