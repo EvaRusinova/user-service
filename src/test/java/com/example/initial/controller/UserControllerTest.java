@@ -25,8 +25,6 @@ public class UserControllerTest {
   @Autowired private ObjectMapper objectMapper;
 
   @Test
-  @Ignore
-  // TODO: enable test once security config is fixed
   public void testRegisterUser() throws Exception {
     UserRegistrationDto userRegistrationDto = new UserRegistrationDto();
     userRegistrationDto.setFullName("John Doe");
