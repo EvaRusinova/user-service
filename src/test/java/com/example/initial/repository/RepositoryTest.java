@@ -17,8 +17,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.test.context.ActiveProfiles;
 
 @SpringBootTest
+@ActiveProfiles("test")
 public class RepositoryTest {
 
   @Autowired private UserRepository userRepository;
@@ -30,7 +32,7 @@ public class RepositoryTest {
   private Cache allPostsByUserIdCache;
   private Cache allPostsByAuthorCache;
 
-  private final String userName = "John";
+  private final String testUserName = "JohnyB";
 
   @BeforeEach
   public void setup() {
@@ -48,7 +50,7 @@ public class RepositoryTest {
     var user =
         User.builder()
             .fullName("John Doe")
-            .username("john_doe")
+            .username(testUserName)
             .password("john_doe")
             .creditCard("4242424242424242")
             .age(25)
@@ -550,11 +552,11 @@ public class RepositoryTest {
     postByAuthorCache.clear();
 
     // First call should not be cached
-    assertNull(postByAuthorCache.get(userName));
+    assertNull(postByAuthorCache.get(testUserName));
 
     // Second call should be cached
-    postRepository.findByAuthor(userName);
-    assertNotNull(postByAuthorCache.get(userName));
+    postRepository.findByAuthor(testUserName);
+    assertNotNull(postByAuthorCache.get(testUserName));
   }
 
   @Test
@@ -567,7 +569,7 @@ public class RepositoryTest {
 
     // Second call should be cached
     postRepository.findAllByUserId(1L);
-    assertNotNull(postByAuthorCache.get(userName));
+    assertNotNull(postByAuthorCache.get(testUserName));
   }
 
   @Test
@@ -576,10 +578,10 @@ public class RepositoryTest {
     allPostsByAuthorCache.clear();
 
     // First call should not be cached
-    assertNull(allPostsByAuthorCache.get(userName));
+    assertNull(allPostsByAuthorCache.get(testUserName));
 
     // Second call should be cached
-    postRepository.findAllByAuthor(userName);
-    assertNotNull(postByAuthorCache.get(userName));
+    postRepository.findAllByAuthor(testUserName);
+    assertNotNull(postByAuthorCache.get(testUserName));
   }
 }
