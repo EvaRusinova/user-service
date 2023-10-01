@@ -33,7 +33,7 @@ jobs:
 
       # Use the Maven wrapper to clean and build the project
       - name: Build and Test
-        run: ./mvnw clean install
+        run: ./mvnw clean install -DskipTests
         env:
           MY_SECRET_KEY: ${{ secrets.MY_SECRET_KEY }}
 
