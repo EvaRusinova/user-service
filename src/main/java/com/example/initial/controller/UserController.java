@@ -20,7 +20,7 @@ public class UserController {
   private final UserService userService;
   private final LoginCounterInterceptor loginCounterInterceptor;
 
-  @PostMapping("/register")
+  @PostMapping(value = "/register")
   public ResponseEntity<?> registerUser(@RequestBody UserRegistrationDto userRegistrationDto) {
     userService.registerUser(userRegistrationDto);
     return ResponseEntity.ok("Registration successful");

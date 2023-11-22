@@ -35,6 +35,7 @@ public class User extends BaseEntity implements UserDetails {
   @JsonIgnoreProperties("user")
   private List<Post> posts;
 
+  @Getter
   @Size(min = 5, max = 20, message = "User name must be between 5 and 20 characters")
   @NotBlank(message = "User name can not be null")
   @NotNull
@@ -79,8 +80,9 @@ public class User extends BaseEntity implements UserDetails {
     return null;
   }
 
-  public String getUsername() {
-    return username;
+  @Override
+  public String getPassword() {
+    return null;
   }
 
   public boolean isAccountNonExpired() {

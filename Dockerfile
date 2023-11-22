@@ -1,7 +1,7 @@
 # Use an official OpenJDK runtime as the base image
 FROM openjdk:20-jdk-slim
 
-# Arguments and env vars
+# Arguments and env vars fetched fromm GitSecrets
 ARG MY_SECRET_KEY
 ENV MY_SECRET_KEY=${MY_SECRET_KEY}
 
